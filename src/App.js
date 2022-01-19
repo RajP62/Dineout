@@ -1,7 +1,12 @@
+import React from 'react';
+import './App.css';
+import RestraurantDetail from './components/RestaurentDetails/RestraurantDetail';
 
 function App() {
   return (
-    <h1>Hello</h1>
+   <div>
+      <RestraurantDetail /> 
+   </div>
   );
 }
 

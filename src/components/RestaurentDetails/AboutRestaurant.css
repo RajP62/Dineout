@@ -1,0 +1,38 @@
+
+.rdp-section {
+    background: #fff;
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+.detailDiv h3 {
+    font-size: 18px;
+    padding-bottom: 12px;
+}
+p {
+    margin-bottom: 15px;
+    font-size: 12px;
+    line-height: 20px;
+}
+.about-info {
+    margin: 0 0 15px;
+    display:flex;
+}
+.about-info .icon {
+    display:flex;
+    flex-shrink: 0;
+}
+.about-info .icon img{
+   width:40px;
+   height:40px;
+   margin-right: 1rem;
+}
+.about-info h4 {
+    font-size: 14px;
+    color: #ac8e48;
+    padding: 2px 0;
+}
+a {
+    text-decoration: none;
+    color: #636363;
+}

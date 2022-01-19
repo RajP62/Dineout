@@ -1,0 +1,19 @@
+.DineOutPayCard_Container {
+  background-color: #ffff;
+  margin: 12px auto 12px;
+  display: flex;
+  height:10vh;
+  align-items: center;
+}
+
+.DineOutPayCard_IMG {
+  padding-right: 15px;
+}
+
+.DineOutPayCard_IMG img {
+    height:4em;
+}
+
+.DineOutPayCard_info {
+  font-size: 14px;
+}
