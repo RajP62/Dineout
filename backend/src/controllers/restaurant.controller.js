@@ -4,7 +4,7 @@ const Restaurants = require("../models/restaurant.model");
 
 router.get("", async(req,res)=>{
     try{
-        let data = await Restaurants.find().populate("state").populate("reviews").populate({path:"about.cuisine", model:"cuisine"}).populate("about.type").populate({path:"about.quickFilters", model:"quickfilter"}).populate({path:"about.facilities", model:"facility"}).lean().exec();
+        let data = await Restaurants.find().populate("reviews").populate({path:"about.cuisine", model:"cuisine"}).populate("about.type").populate({path:"about.quickFilters", model:"quickfilter"}).populate({path:"about.facilities", model:"facility"}).lean().exec();
         res.status(200).json({data});
     }
     catch(e){
@@ -14,7 +14,7 @@ router.get("", async(req,res)=>{
 
 router.get("/filter", async(req,res)=>{
     try{
-        let data = await Restaurants.find({}).populate("state").populate("reviews").populate({path:"about.cuisine", model:"cuisine"}).populate("about.type").populate({path:"about.quickFilters", model:"quickfilter"}).populate({path:"about.facilities", model:"facility"}).lean().exec();
+        let data = await Restaurants.find({}).populate("reviews").populate({path:"about.cuisine", model:"cuisine"}).populate("about.type").populate({path:"about.quickFilters", model:"quickfilter"}).populate({path:"about.facilities", model:"facility"}).lean().exec();
         data = data.filter(el=>el.state.name===req.query.state);
         res.status(200).json({data});
     }
