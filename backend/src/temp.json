@@ -1,0 +1,79 @@
+[
+    {
+        "imagePrimary":"https://im1.dineout.co.in/images/uploads/restaurant/sharpen/2/b/t/p27452-15020105505986dcb6d147f.jpg?tr=tr:n-large",
+        "altImages":["https://im1.dineout.co.in/images/uploads/restaurant/sharpen/2/t/n/p27452-15016884045981f2542f12e.jpg?tr=tr:n-large","https://im1.dineout.co.in/images/uploads/restaurant/sharpen/2/a/h/p27452-15020105685986dcc85c809.jpg?tr=tr:n-large","https://im1.dineout.co.in/images/uploads/restaurant/sharpen/2/h/c/p27452-15016882855981f1ddd7d0b.jpg?tr=tr:n-large","https://im1.dineout.co.in/images/uploads/restaurant/sharpen/2/n/t/p27452-15020105815986dcd586fe8.jpg?tr=tr:n-large","https://im1.dineout.co.in/images/uploads/restaurant/sharpen/2/o/c/p27452-15016882905981f1e26efd8.jpg?tr=tr:n-large","https://im1.dineout.co.in/images/uploads/restaurant/sharpen/2/a/m/p27452-15016883005981f1ec1806c.jpg?tr=tr:n-large"],
+        "title":"Local",
+        "state":"61e8fa7a5e916bcf3978a10f",
+        "district":"Cannought Place",
+        "place":"Central Delhi",
+        "featured":false,
+        "reviews":[],
+        "contact":{
+            "callus":"+91 9212340202",
+            "callrestaurant": "09599553145"
+        },
+        "fssai":"S485853KHDD",
+        "about":{
+            "cuisine":["61e8fcc45e916bcf3978a12d","61e8fcc45e916bcf3978a12c","61e8fcc45e916bcf3978a12b","61e8fcc45e916bcf3978a12f","61e8fcc45e916bcf3978a130","61e8fcc45e916bcf3978a131","61e8fcc45e916bcf3978a132","61e8fcc45e916bcf3978a133"],
+            "type":["61e8fd385e916bcf3978a138","61e8fd385e916bcf3978a137","61e8fd385e916bcf3978a136","61e8fd385e916bcf3978a139"],
+            "quickFilters":["61e8fc125e916bcf3978a120","61e8fc125e916bcf3978a11f","61e8fc125e916bcf3978a11e","61e8fc125e916bcf3978a123","61e8fc125e916bcf3978a124"],
+            "avgcost":"1800 for 2",
+            "bestselling":["Paan Cosmo,","Local LIIT", "Chai Ka Punch", "Aam Mojito", "Punjabi Old Fashion", "Farmer Vegetable Pizza","Loaded Cheese Nachos", "Fish Finger Skewers"],
+            "facilities":["61e9018d5e916bcf3978a167", "61e9018d5e916bcf3978a168","61e9018d5e916bcf3978a16a","61e9018d5e916bcf3978a16d","61e9018e5e916bcf3978a172","61e9018e5e916bcf3978a170","61e9018d5e916bcf3978a16e","61e9018e5e916bcf3978a177","61e9018e5e916bcf3978a176"],
+            "openAt":11,
+            "clostAt":21
+        }
+    },
+
+    {
+        "imagePrimary":"https://im1.dineout.co.in/images/uploads/restaurant/sharpen/2/a/j/p20996-145631488756cd9a0796608.jpg?tr=tr:n-large",
+        "altImages":["https://im1.dineout.co.in/images/uploads/restaurant/sharpen/2/q/t/p20996-145631488756cd9a07acd46.jpg?tr=tr:n-large","https://im1.dineout.co.in/images/uploads/restaurant/sharpen/2/x/c/p20996-1484733974587f3e1682218.jpg?tr=tr:n-large","https://im1.dineout.co.in/images/uploads/restaurant/sharpen/2/a/d/p20996-145631488756cd9a077db0c.jpg?tr=tr:n-large","https://im1.dineout.co.in/images/uploads/restaurant/sharpen/2/x/h/p20996-14609783895714c2d5ce139.jpg?tr=tr:n-large","https://im1.dineout.co.in/images/uploads/restaurant/sharpen/2/i/i/p20996-14609783895714c2d59bc65.jpg?tr=tr:n-large","https://im1.dineout.co.in/images/uploads/restaurant/sharpen/2/z/s/p20996-148905599658c130fc0e4f8.jpg?tr=tr:n-large"],
+        "title":"Tamasha",
+        "state":"61e8fadc5e916bcf3978a112",
+        "district":"pune",
+        "place":"Ramsar",
+        "featured":false,
+        "reviews":[],
+        "contact":{
+            "callus":"+91 9245533354",
+            "callrestaurant": "09556335566"
+        },
+        "fssai":"S485853KHDD",
+        "about":{
+            "cuisine":["61e8fcc45e916bcf3978a12d","61e8fcc45e916bcf3978a131","61e8fcc45e916bcf3978a130","61e8fcc45e916bcf3978a12e"],
+            "type":["61e8fd385e916bcf3978a138","61e8fd385e916bcf3978a13a","61e8fd385e916bcf3978a136","61e8fd385e916bcf3978a13e"],
+            "quickFilters":["61e8fc125e916bcf3978a11e","61e8fc125e916bcf3978a11f","61e8fc125e916bcf3978a121","61e8fc125e916bcf3978a122","61e8fc125e916bcf3978a123"],
+            "avgcost":"1800 for 2",
+            "bestselling":["Dahi Kebab","Dragon Roll", "Alfredo Penne", "Golden Prawns", "Phuket Fish", "Chichen Chettinad"],
+            "facilities":["61e9018d5e916bcf3978a166", "61e9018e5e916bcf3978a175","61e9018d5e916bcf3978a16d","61e9018d5e916bcf3978a16b","61e9018d5e916bcf3978a16a","61e9018e5e916bcf3978a170","61e9018e5e916bcf3978a178","61e9018e5e916bcf3978a177","61e9018e5e916bcf3978a176"],
+            "openAt":11,
+            "clostAt":21
+        }
+    },
+
+    {
+        "imagePrimary":"https://im1.dineout.co.in/images/uploads/restaurant/sharpen/8/l/j/p87534-161719349660646a18dc26a.jpg?tr=tr:n-large",
+        "altImages":["https://im1.dineout.co.in/images/uploads/restaurant/sharpen/8/j/t/p87534-1617193452606469ec89c65.jpg?tr=tr:n-large","https://www.dineout.co.in/bangalore/badmaash-vittal-mallya-road-central-bangalore-87534","https://im1.dineout.co.in/images/uploads/restaurant/sharpen/8/x/a/p87534-16353139636178e92b91bdb.jpg?tr=tr:n-large","https://im1.dineout.co.in/images/uploads/restaurant/sharpen/8/q/k/p87534-16353139566178e92420804.jpg?tr=tr:n-large"],
+        "title":"Badmaash",
+        "state":"61e8faed5e916bcf3978a114",
+        "district":"UB City",
+        "place":"Vittal Mallya Road",
+        "featured":false,
+        "reviews":[],
+        "contact":{
+            "callus":"+91 8647376648",
+            "callrestaurant": "09556334747"
+        },
+        "fssai":"Dtgkdk985dsd",
+        "about":{
+            "cuisine":["61e8fcc45e916bcf3978a12c","61e8fcc45e916bcf3978a130","61e8fcc45e916bcf3978a12b","61e8fcc45e916bcf3978a131"],
+            "type":["61e8fd385e916bcf3978a13c","61e8fd385e916bcf3978a13d","61e8fd385e916bcf3978a137","61e8fd385e916bcf3978a13e"],
+            "quickFilters":["61e8fc125e916bcf3978a124","61e8fc125e916bcf3978a120","61e8fc125e916bcf3978a11e","61e8fc125e916bcf3978a123","61e8fc125e916bcf3978a125"],
+            "avgcost":"2500 for 2",
+            "bestselling":["Dahi Kebab","Dragon Roll", "Alfredo Penne", "Golden Prawns", "Phuket Fish", "Chichen Chettinad","Biryani with vada", "Noodles Crispy", "Chai with Samosa"],
+            "facilities":["61e9018d5e916bcf3978a166", "61e9018e5e916bcf3978a175","61e9018d5e916bcf3978a16d","61e9018d5e916bcf3978a16b","61e9018d5e916bcf3978a16a","61e9018e5e916bcf3978a170","61e9018e5e916bcf3978a178","61e9018e5e916bcf3978a177","61e9018e5e916bcf3978a176","61e9018d5e916bcf3978a167"],
+            "openAt":11,
+            "clostAt":21
+        }
+    }
+]
