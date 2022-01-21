@@ -29,3 +29,4 @@ const restaurantSchema = new Schema({
 }, {versionKey:false, timestamps: true});
 
 module.exports = model("restaurant", restaurantSchema); 
+

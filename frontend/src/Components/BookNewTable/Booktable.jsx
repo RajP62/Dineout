@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Booktable.css";
 import Grid from '@mui/material/Grid'
 
@@ -24,10 +24,22 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 
 const Tabledisplaydata = () => {
-  // console.log(props);
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [resturent, setResturent] = useState([]);
+  const getResturents = async () => {
+    const response = await fetch('https://backend-dineout.herokuapp.com/restaurants', { mode: "cors" });
+    const data = await response.json()
+    console.log(data)
+    setResturent(data.data);
+
+  }
+  useEffect(() => {
+    getResturents();
+  }, [])
 
   return (
     <>
@@ -62,26 +74,26 @@ const Tabledisplaydata = () => {
                         <Box className="modal">
 
                           <sapn>
-                          <Typography className="modal-content " sx={{ fontSize: 18, fontWeight: 555, color: "GrayText"}}>Quick Filters</Typography>
+                            <Typography className="modal-content " sx={{ fontSize: 18, fontWeight: 555, color: "GrayText" }}>Quick Filters</Typography>
                           </sapn>
-                          <span>
-                          <TextField className="modal-content"  id="outlined-basic" label="Search" variant="outlined" />
-                          </span>
+                          <div>
+                            <TextField className="modal-content" id="outlined-basic" label="Search" variant="outlined" />
+                          </div>
                           <Typography>
                             <FormGroup>
-                            
+
                               <div className="modal-content">
-                                
-                              <FormControlLabel control={<Checkbox />} label="North Indian" />
-                              <FormControlLabel control={<Checkbox />} label="Chinese" />
-                              <FormControlLabel control={<Checkbox />} label="Fast Food" />
-                              <FormControlLabel control={<Checkbox />} label="Desserts" />
-                              <FormControlLabel control={<Checkbox />} label="5 Star" />
-                              <FormControlLabel control={<Checkbox />} label="Happy Hour" />
+
+                                <FormControlLabel control={<Checkbox />} label="North Indian" />
+                                <FormControlLabel control={<Checkbox />} label="Chinese" />
+                                <FormControlLabel control={<Checkbox />} label="Fast Food" />
+                                <FormControlLabel control={<Checkbox />} label="Desserts" />
+                                <FormControlLabel control={<Checkbox />} label="5 Star" />
+                                <FormControlLabel control={<Checkbox />} label="Happy Hour" />
                               </div>
                               <div className="modal-content">
-                              <FormControlLabel control={<Checkbox />} label="Pure Veg" />
-                              <FormControlLabel control={<Checkbox />} label="Dessert" />
+                                <FormControlLabel control={<Checkbox />} label="Pure Veg" />
+                                <FormControlLabel control={<Checkbox />} label="Dessert" />
                               </div>
                             </FormGroup>
                           </Typography>
@@ -109,7 +121,7 @@ const Tabledisplaydata = () => {
                       <FormControlLabel control={<Checkbox />} label="Chinese" />
                       <FormControlLabel control={<Checkbox />} label="Fast Food" />
                       <FormControlLabel control={<Checkbox />} label="Desserts" />
-                      <Button sx={{marginLeft:-15}} onClick={handleOpen}>Show More(12)</Button>
+                      <Button sx={{ marginLeft: -15 }} onClick={handleOpen}>Show More(12)</Button>
                       <Modal
                         open={open}
                         onClose={handleClose}
@@ -122,20 +134,20 @@ const Tabledisplaydata = () => {
                           <Typography sx={{ fontSize: 18, fontWeight: 555, color: "GrayText" }}>Quick Filters</Typography>
 
                           <Typography>
-                            <TextField className="search-bar"  id="outlined-basic" label="Search" variant="outlined" />
+                            <TextField className="search-bar" id="outlined-basic" label="Search" variant="outlined" />
                             <FormGroup>
                               <sapn className="modal-content">
-                              <FormControlLabel control={<Checkbox />} label="North Indian" />
-                              <FormControlLabel control={<Checkbox />} label="Chinese" />
-                              <FormControlLabel control={<Checkbox />} label="Fast Food" />
-                              <FormControlLabel control={<Checkbox />} label="Desserts" />
+                                <FormControlLabel control={<Checkbox />} label="North Indian" />
+                                <FormControlLabel control={<Checkbox />} label="Chinese" />
+                                <FormControlLabel control={<Checkbox />} label="Fast Food" />
+                                <FormControlLabel control={<Checkbox />} label="Desserts" />
                               </sapn>
-                              <span className="modal-content">
-                              <FormControlLabel control={<Checkbox />} label="5 Star" />
-                              <FormControlLabel control={<Checkbox />} label="Happy Hour" />
-                              <FormControlLabel control={<Checkbox />} label="Pure Veg" />
-                              <FormControlLabel control={<Checkbox />} label="Dessert" />
-                              </span>
+                              <div className="modal-content">
+                                <FormControlLabel control={<Checkbox />} label="5 Star" />
+                                <FormControlLabel control={<Checkbox />} label="Happy Hour" />
+                                <FormControlLabel control={<Checkbox />} label="Pure Veg" />
+                                <FormControlLabel control={<Checkbox />} label="Dessert" />
+                              </div>
                             </FormGroup>
                           </Typography>
 
@@ -213,7 +225,7 @@ const Tabledisplaydata = () => {
                 <h3 className="heading1 text1"> Sort By</h3>
 
               </sapn>
-              <span className="right-heading-head">
+              <div className="right-heading-head">
 
                 <FormControl sx={{ minWidth: 120 }}>
                   <Select className="select" defaultValue="" id="grouped-select" label="Grouping">
@@ -223,50 +235,44 @@ const Tabledisplaydata = () => {
                     <MenuItem value={4}>Price High to Low</MenuItem>
                   </Select>
                 </FormControl>
-              </span>
+              </div>
             </div>
 
-            <Card className="main-card" sx={{ maxWidth: 270 }}>
-              <CardMedia
-                component="img"
-                alt="green iguana"
-                className="card-image"
-                image="https://im1.dineout.co.in/images/uploads/restaurant/sharpen/8/l/j/p87534-161719349660646a18dc26a.jpg?tr=tr:n-medium"
-              />
-              <CardContent>
-              <Box
-                  style={{
-                    textAlign: "left",
-                    marginLeft: "10px",
-                    marginTop: "5px",
-                    marginBottom: "5px",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    maxWidth: "230px",
-                  }}
-                >
-                  <b
-                    style={{
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    Badmaash
-                  </b>
-                </Box>
-                <Typography variant="body2" color="text.secondary">
-                <div className="card-data"><ul><span><span>₹ 2,500 for 2 (approx)</span><span> | </span><a href={"/bangalore-restaurants/mughlai-cuisine" }>Mughlai</a><span>, </span><a href={"/bangalore-restaurants/awadhi-cuisine"}>Awadhi</a><span>, </span>Modern Indian<span>, </span><a href="/bangalore-restaurants/barbecue-cuisine" data-w-onclick="stopClickPropagation|w1-restarant">Barbecue Finger Food</a><span>, </span> <a href={"/bangalore-restaurants/indian-cuisine-cuisine"}>Indian Cuisine</a></span>1 offer available</ul></div>
-                </Typography>
-                <span className="btn">Dineout</span>
-              </CardContent>
-              <CardActions className="coupan">
-                <span className="coupan-offer"><img src="https://im1.dineout.co.in/images/uploads/misc/2020/Sep/21/free_offer.png" className="coupan-image" alt="coupan" /></span>
-                <span className="coupan-offer"><h5 className="coupan-text">15% Off The Total Bill</h5></span>
-                <span className="coupan-offer"><Button variant="contained" className="coupan-button" size="small"><h6 className="coupan-text1">Avail Now</h6></Button></span>
-              </CardActions>
-            </Card>
-            
+            {
+              resturent.map((mainData) => {
+                return (
+                  <>
+                    <Card className="main-card" sx={{ maxWidth: 280 }} key={mainData.id} >
+                      <CardMedia
+                        component="img"
+                        alt={mainData.altImages}
+                        className="card-image"
+                        image={mainData.imagePrimary}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h6" component="div">
+                          {mainData.title}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          <Box className="card-location"> {mainData.place},{mainData.district},{mainData.state}</Box>
+                          <div className="card-location">
+                            {mainData.avgcost} for 2 (approx)|{mainData.about.bestselling}
+                          </div>
+                        </Typography>
+                        <div className="card-btn">Dineout</div>
+                      </CardContent>
+                      <CardActions className="coupan">
+                        <div className="coupan-offer"><img src="https://im1.dineout.co.in/images/uploads/misc/2020/Sep/21/free_offer.png" className="coupan-image" alt="coupan" /></div>
+                        <div className="coupan-offer"><h5 className="coupan-text">15% Off The Total Bill</h5></div>
+                        <div className="coupan-offer"><Button variant="contained" className="coupan-button" size="small"><h6 className="coupan-text1">Avail Now</h6></Button></div>
+                      </CardActions>
+                    </Card>
+                  </>
+                )
+              })
+            }
+
+
           </Grid>
         </Grid>
       </Container>
@@ -275,3 +281,4 @@ const Tabledisplaydata = () => {
 };
 
 export { Tabledisplaydata };
+
