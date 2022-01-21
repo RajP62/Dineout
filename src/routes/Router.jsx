@@ -5,10 +5,7 @@ import {Tabledisplaydata} from "../components/Booktable"
 const Routes = () => {
   return (
     <>
-       
-
           <Tabledisplaydata />
-     
     </>
   );
 };
