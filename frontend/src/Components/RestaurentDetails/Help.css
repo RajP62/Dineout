@@ -1,0 +1,50 @@
+.rdp-section {
+    background: #fff;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+.rdp-need-help h4 {
+    font-size: 18px;
+    padding-bottom: 10px;
+}
+.rdp-need-help ul {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowwrap;
+}
+.rdp-need-help ul li {
+    width: 30%;
+}
+.body-color {
+    color: #202020;
+}
+.rdp-need-help ul li .icon {
+    margin-right: 20px;
+    width:40px;
+}
+img {
+    max-width: 100%
+}
+.rdp-need-help h5 {
+    font-size: 16px;
+    font-weight: 700;
+}
+.rdp-need-help p {
+    font-size: 16px;
+    color: rgb(26, 23, 23);
+    margin: 0;
+    line-height: 20px;
+}
+.d-flex {
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    margin: auto;
+}
+.container-number {
+height:5rem
+}
+.rdp-need-help p {
+    font-size: 16px;
+    margin: 0;
+}
