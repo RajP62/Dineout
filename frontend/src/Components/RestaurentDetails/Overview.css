@@ -1,0 +1,32 @@
+.rdp-section9 {
+    background: #fff;
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 12px;
+    position: sticky;
+    top: 0px;
+    overflow: hidden;
+    z-index:100;
+}
+ul.rdp-detailmenu {
+    background: #fff;
+    border-radius: 4px;
+    display:flex;
+    flex-flow: row;
+}
+ul.rdp-detailmenu li {
+    border-right: 1px solid #f5f5f6;
+    text-align: center;
+    font-size: 16px;
+    margin: 0 1px;
+}
+ul.rdp-detailmenu li a {
+    color: #202020;
+    padding: 10px 30px 8px;
+    display: inline-block;
+    font-weight: bold;
+    border-bottom: 5px solid #fff;
+}
+.rdp-detailmenu li:hover{
+    border-bottom: 5px solid rgb(67, 230, 67);
+}

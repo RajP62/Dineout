@@ -1,8 +1,8 @@
-import { HomePage } from "./Components/Homepage/homepage";
+import RestraurantDetail from "./Components/RestaurentDetails/RestraurantDetail";
 
 function App() {
   return (
-    <HomePage/>
+    <RestraurantDetail/>
   );
 }
 
