@@ -1,11 +1,11 @@
-const {Schema,model} = require("mongoose");
+const {Schema,model} = require("mongoose"); 
 
 const restaurantSchema = new Schema({
     imagePrimary:{type:String, required:true},
     altImages:[{type:String}],
     title:{type:String, required:true},
-    state: {type:Schema.Types.ObjectId, ref:"state" ,required:true},
-    district: {type:String, required:true},
+    state: {type:String, required:true},
+    district: {type:String,  required:true},
     place: {type:String, required:true},
     featured: {type: Boolean, required: true},
     reviews: [{type:Schema.Types.ObjectId, ref:"review"}],
