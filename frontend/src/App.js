@@ -4,15 +4,15 @@ import './App.css';
 
 
 import Footer from "./Components/footer"
-// import Navbar from "./Components/navbar"
+import Navbar from "./Components/navbar"
 import {Signup} from "./Components/signup"
 import { Signin } from './Components/signin';
 import TimeSlots from "./Components/Timeslot";
 export default function App() {
   return (
     <div className="App">
-     
-hello
+     <Navbar/>
+
  <div className="scroll">
  
  <TimeSlots/>
@@ -25,7 +25,9 @@ hello
      <Signin/>
     </div>
     
-   
+   <div>
+     <Footer/>
+   </div>
 
     
     </div>

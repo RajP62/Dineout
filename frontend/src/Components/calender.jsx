@@ -32,11 +32,13 @@ const Wrapper = styled.div`
     width: 37.5px;
     border: none;
     background-color: #ffffff;
+    height: 77px;
     .select__day {
       color: #797979;
       font-size: 12px;
       line-height: 16px;
       font-weight: 400;
+
     }
     .select__date {
       color: #797979;

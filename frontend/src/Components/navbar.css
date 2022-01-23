@@ -2,6 +2,7 @@
     border-bottom:1px solid black;
     height:60px;
     display: flex;
+    margin-left: 10px;
     
   }
   
@@ -9,6 +10,8 @@
     /* border: 2px solid black; */
     flex:10%;
     padding:10px;
+
+    height: 30px;
   }
   .box div:nth-child(2){
     /* border: 2px solid black; */
@@ -42,18 +45,21 @@
     display: flex;
     justify-content: center;
   }
-  .links > div:hover {
-    color: rgb(252, 97, 97);
-    font-weight: bolder;
-    display: flex;
-    justify-content: center;
-  
-  
-  }
+
   
   a {
     text-decoration: none;
     color: rgb(252, 97, 97);
    color: black;
     margin: 5px 15px;
+  }
+
+
+  a:hover{
+    color: rgb(252, 97, 97);
+  }
+
+
+  a:focus{
+    color: rgb(252, 97, 97); 
   }

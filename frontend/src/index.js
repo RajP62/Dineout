@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { SigninContextProvider } from "./Context/SignInContext";
+import { BrowserRouter } from 'react-router-dom';
 
 import { CalenderContextProvider } from './Context/CalenderContext';
 
@@ -12,8 +13,10 @@ ReactDOM.render(
   <React.StrictMode>
       <SigninContextProvider>
         <CalenderContextProvider>
-
-          <App />
+<BrowserRouter>
+<App />
+</BrowserRouter>
+         
           </CalenderContextProvider>
   
     </SigninContextProvider>

@@ -1,8 +1,14 @@
 import "./navbar.css"
 import Button from '@mui/material/Button';
+import { SigninContext } from "../Context/SignInContext";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import  MultipleSelectPlaceholder from "./multipleSelector"
 function Navbar(){
+
+  const { handleModel} =
+    useContext(SigninContext);
+
   return(
     <>
     <div className="box">
@@ -24,7 +30,7 @@ Search
 </div>
 <div>
 
-<Button sx={{backgroundColor:" rgb(252, 97, 97)",width:"100px",textTransform:"lowercase",fontWeight:"700"}} variant="contained" size="small" color="error">
+<Button  onClick={() => handleModel()} sx={{backgroundColor:" rgb(252, 97, 97)",width:"100px",textTransform:"lowercase",fontWeight:"700"}} variant="contained" size="small" color="error">
 Login
 </Button>
 </div>

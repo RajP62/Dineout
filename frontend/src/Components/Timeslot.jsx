@@ -250,14 +250,17 @@ const {BookTime,Status,Guest,handleBookTime,handleStatus,addGuest,removeGuest}=u
         <p>Choose the number of guests going</p>
         <div className="guest__count--parent">
           <h4>Guests:</h4>
-          <button style={{border:"none"}} onClick={()=>removeGuest()}>
+          <button style={{border:"none"}} onClick={()=>removeGuest()}
+          
+          disabled={Guest < 1}>
             <img
               src="https://dineout-clone.vercel.app/static/media/remove.83088a06.svg"
               alt="removeImg"
             ></img>
           </button>
           {Guest}
-          <button style={{border:"none"}} onClick={()=>addGuest()}>
+          <button style={{border:"none"}} onClick={()=>addGuest()}
+               disabled={Guest > 10}>
             <img
               src="https://dineout-clone.vercel.app/static/media/add.00614146.svg"
               alt="addImg"
