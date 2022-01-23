@@ -5,7 +5,6 @@ export default function Help() {
   return (
     <div id="help">
       <section className="rdp-section rdp-need-help" id="help">
-        <h4>We're always here to help</h4>
         <ul className="d-flex">
           <li>
               <div className="d-flex">
