@@ -21,12 +21,8 @@ const names = [
   'DLF cyber city',
   'Sector 29',
   'Punjabi bagh',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
+  'Nehru Place',
+ 
 ];
 
 function getStyles(name, personName, theme) {
