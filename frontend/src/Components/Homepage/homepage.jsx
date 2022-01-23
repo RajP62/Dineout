@@ -12,6 +12,7 @@ import googleplaystore from "../../images/Homepage/googleplaystore.png";
 import googleappstore from "../../images/Homepage/googleappstore.png";
 import connectUsingApp from "../../images/Homepage/connectusingapphomepage.png"
 import { useEffect, useState } from 'react';
+import { Signin } from '../signin';
 
 export const HomePage = () => {
     const [data, setData] = useState([]);

@@ -12,7 +12,7 @@ const Item = styled(Paper)(({ theme }) => ({
   boxShadow: "none",
 }));
 
-const OderDetails = () => {
+export const OrderDetails = () => {
   return (
     <Box sx={{ overflow: "hidden"}}>
       <Paper sx={{ maxWidth: 850, my: 1, mx: "auto", p: 1}}>
@@ -66,4 +66,3 @@ const OderDetails = () => {
     </Box>
   );
 };
-export default OderDetails;

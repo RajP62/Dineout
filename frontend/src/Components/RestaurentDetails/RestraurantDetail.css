@@ -50,9 +50,8 @@
   position: fixed;
   overflow: auto;
   right: 46.6667px;
+  background-color: #F4F4F4;
   top: 4rem;
-  background-color: grey;
-  border: 1px solid red;
   width: 26%;
   height: 400px;
   width: 340px;
@@ -118,4 +117,8 @@ a {
   color: #fffefe;
   padding-right: 25px;
   width: 100%;
+}
+
+.slick-track{
+  height: 500px;
 }

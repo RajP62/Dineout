@@ -8,7 +8,7 @@ function NewOffers() {
         <h3 className="cursor">Free Offers</h3>
         <div className=" offer-reservations-card box-rdp free-offers d-flex ">
           <div className="free-offers_content">
-            <h4>
+            <h4 style={{width:"100%"}}>
               Lunch and Dinner Party Package - Rs 1299 Al (Buffet + 4 Drinks of
               30ml)
               <a
@@ -26,9 +26,6 @@ function NewOffers() {
                 </span>
               </div>
               <div className="free-offers_right">
-                <a className="btn btn-primary ripple cursor selectOfferBtn">
-                  Select
-                </a>
               </div>
             </div>
           </div>
@@ -37,7 +34,7 @@ function NewOffers() {
 
         <div className=" offer-reservations-card box-rdp free-offers d-flex ">
           <div className="free-offers_content">
-            <h4>
+            <h4 style={{width:"100%"}}>
               Lunch and Dinner Party Package - Rs 1299 Al (Buffet + 4 Drinks of
               30ml)
               <a
@@ -55,9 +52,6 @@ function NewOffers() {
                 </span>
               </div>
               <div className="free-offers_right">
-                <a className="btn btn-primary ripple cursor selectOfferBtn">
-                  Select
-                </a>
               </div>
             </div>
           </div>
@@ -68,7 +62,7 @@ function NewOffers() {
 
         <div className=" offer-reservations-card box-rdp free-offers d-flex ">
           <div className="free-offers_content">
-            <h4>
+            <h4 style={{width: '100%'}}>
               Lunch and Dinner Party Package - Rs 1299 Al (Buffet + 4 Drinks of
               30ml)
               <a
@@ -86,9 +80,6 @@ function NewOffers() {
                 </span>
               </div>
               <div className="free-offers_right">
-                <a className="btn btn-primary ripple cursor selectOfferBtn">
-                  Select
-                </a>
               </div>
             </div>
           </div>

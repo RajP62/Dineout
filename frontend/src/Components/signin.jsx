@@ -145,14 +145,10 @@ const Style = styled.div`
     }
   }
   .top_cross {
-    position: relative;
-    left: 380px;
     cursor: pointer;
     width: 24px;
     height: 24px;
     border-radius: 20px;
-    display: flex;
-    justify-content: center;
     align-items: center;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.03);
   }
@@ -212,6 +208,7 @@ export const Signin = () => {
   return (
     <Model style={customStyles} isOpen={model}>
       <Style>
+      <div className="holder" style={{width: "100%", display: "flex", justifyContent:"end "}}>
         <div onClick={() => handleModel()} className="top_cross">
           <svg
             width="12"
@@ -226,7 +223,8 @@ export const Signin = () => {
               stroke="#DCDCDC"
             />
           </svg>
-        </div>
+          </div>
+          </div>
         <h1>Login</h1>
         <div className="inputBox">
           <p>Phone number</p>
