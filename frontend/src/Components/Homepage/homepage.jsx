@@ -1,4 +1,4 @@
-import { Box, Button, Input, requirePropFactory } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Input, requirePropFactory, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 import Style from "styled-components";
 import { BsSearch } from "react-icons/bs";
@@ -11,38 +11,125 @@ import {ImMobile2} from "react-icons/im";
 import googleplaystore from "../../images/Homepage/googleplaystore.png";
 import googleappstore from "../../images/Homepage/googleappstore.png";
 import connectUsingApp from "../../images/Homepage/connectusingapphomepage.png"
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Signin } from '../signin';
+import "../BookNewTable/Booktable.css"
+import { Link } from 'react-router-dom';
+import { ClickedContext } from '../../Context/clickedItem';
 
 export const HomePage = () => {
     const [data, setData] = useState([]);
+    const [featuredData, setFeaturedData] = useState([]);
+
+    const {setClickedId} = useContext(ClickedContext);
 
     const getData = async()=>{
         let data = await fetch("https://backend-dineout.herokuapp.com/restaurants");
         let realData = await data.json();
-        console.log(realData);
+        setData(realData.data);
+        let featured = await fetch("https://backend-dineout.herokuapp.com/restaurants/featured");
+        let featuredReal = await featured.json();
+        setFeaturedData(featuredReal.data);
     }
+
+    const handleClick = (id)=>{
+        setClickedId(id);
+      }
 
     useEffect(()=>{
         getData();
     },[])
     return <>
-        <Box sx={{ height: "400px", backgroundImage: `url(https://im1.dineout.co.in/images/uploads/misc/2021/Mar/31/oldherobannerwebfinal_bau.jpg)`, backgroundSize: "cover", display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <Box sx={{ height: "400px", backgroundImage: `url(https://im1.dineout.co.in/images/uploads/misc/2021/Mar/31/oldherobannerwebfinal_bau.jpg)`, backgroundSize: "cover", display: "flex", justifyContent: "center", alignItems: "center"}}>
             <Box className="searchOuterBox">
                 <h1 style={{ color: "white", fontSize: "40px" }}>It's Now Safe To <span style={{ color: "#FF4C2B" }}>Crave!</span></h1>
                 <Box sx={{ backgroundColor: "white", display: "flex", alignItems: "center" }}>
                     <BsSearch style={{ color: "#FF4C2B", fontSize: "30px", padding: "15px", userSelect: "none" }} />
-
                     <Input className="input_search" sx={{ background: "white", padding: "15px", color: "black", borderRadius: "10px", fontSize: "20px" }} fullWidth placeholder='Search for Restaurants, Cuisines, Location...' disableUnderline>
                     </Input>
                     <Button sx={{ backgroundColor: "#FF645A", textTransform: "capitalize", fontSize: "20px", margin: "10px", width: "15%", fontWeight: "bold", ":hover": { backgroundColor: "red" } }} variant={"contained"}>Search</Button>
                 </Box>
             </Box>
         </Box>
+        <Box style={{textAlign:"start", margin:"7%"}}>
+            <h1>Restaurants Near You</h1>
+        <Box sx={{display:"grid", gridTemplateColumns:"21% 21% 21% 21%", gap:"5%"}}>
+        {data.map((mainData, ind)=>ind<=3? <>
+            <Link to={`/detail`}>
+                    <Card className="main-card" sx={{ maxWidth: 280 }} key={mainData.id} onClick={()=>handleClick(mainData._id)}>
+                      <CardMedia
+                        component="img"
+                        alt={mainData.altImages}
+                        className="card-image"
+                        image={mainData.imagePrimary}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h6" component="div">
+                          {mainData.title}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          <Box className="card-location"> {mainData.place},{mainData.district},{mainData.state}</Box>
+                          <div className="card-location">
+                            {mainData.avgcost} for 2 (approx)|{mainData.about.bestselling}
+                          </div>
+                        </Typography>
+                        <div className="card-btn">Dineout</div>
+                      </CardContent>
+                      <CardActions className="coupan">
+                        <div className="coupan-offer"><img src="https://im1.dineout.co.in/images/uploads/misc/2020/Sep/21/free_offer.png" className="coupan-image" alt="coupan" /></div>
+                        <div className="coupan-offer"><h5 className="coupan-text">15% Off The Total Bill</h5></div>
+                        <div className="coupan-offer"><Button variant="contained" className="coupan-button" size="small"><h6 className="coupan-text1">Avail Now</h6></Button></div>
+                      </CardActions>
+                    </Card>
+                    </Link>
+        </> : null
+        )}
+        </Box>
 
-        <Box sx={{ backgroundColor: "#F3F3F3" }}>
+        </Box>
 
-            <Box sx={{ marginLeft: "15%", paddingTop: "20px", paddingBottom: "20px", width: "40%" }}>
+        {/* Featured section */}
+
+        <Box style={{textAlign:"start", margin:"7%"}}>
+        <h1>Featured Restaurants</h1>
+        <Box sx={{display:"grid", gridTemplateColumns:"21% 21% 21% 21%", gap:"5%"}}>
+        {featuredData.map((mainData, ind)=>ind<=3? <>
+            <Link to={`/detail`}>
+                    <Card className="main-card" sx={{ maxWidth: 280 }} key={mainData.id} onClick={()=>handleClick(mainData._id)}>
+                      <CardMedia
+                        component="img"
+                        alt={mainData.altImages}
+                        className="card-image"
+                        image={mainData.imagePrimary}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h6" component="div">
+                          {mainData.title}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          <Box className="card-location"> {mainData.place},{mainData.district},{mainData.state}</Box>
+                          <div className="card-location">
+                            {mainData.avgcost} for 2 (approx)|{mainData.about.bestselling}
+                          </div>
+                        </Typography>
+                        <div className="card-btn">Dineout</div>
+                      </CardContent>
+                      <CardActions className="coupan">
+                        <div className="coupan-offer"><img src="https://im1.dineout.co.in/images/uploads/misc/2020/Sep/21/free_offer.png" className="coupan-image" alt="coupan" /></div>
+                        <div className="coupan-offer"><h5 className="coupan-text">15% Off The Total Bill</h5></div>
+                        <div className="coupan-offer"><Button variant="contained" className="coupan-button" size="small"><h6 className="coupan-text1">Avail Now</h6></Button></div>
+                      </CardActions>
+                    </Card>
+                    </Link>
+        </> : null
+        )}
+        </Box>
+
+        </Box>
+
+        <Box sx={{ backgroundColor: "#F3F3F3"}}>
+
+            <Box sx={{ marginLeft: "15%", paddingTop: "20px", paddingBottom: "20px", width: "40%" , padding:"3%"}}>
                 <h1>Best Offers</h1>
                 <Box className="homepageDiscImg" sx={{ display: "flex", gap: "10px" }}>
                     <Box>

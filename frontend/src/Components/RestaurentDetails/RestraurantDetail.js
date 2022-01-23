@@ -219,20 +219,9 @@ export const RestraurantDetail = () => {
                   </div>
                 </div>
               </section>
-              <OverView />
-              <NewOffers />
-              <DinePage />
-              <Menu />
-              <AboutRestaurant product="product" />
-              <YouMayLike />
-              <Help />
             </div>
 
             {/*   form   */}
-
-            <div className="sidebar-book-section" style={{padding:"2%"}}>
-              <TimeSlots/>
-            </div>
           </div>
         </div>
       </div>
