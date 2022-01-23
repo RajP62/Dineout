@@ -4,6 +4,7 @@ import { SigninContext } from "../Context/SignInContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import  MultipleSelectPlaceholder from "./multipleSelector"
+import { Signin } from "./signin";
 function Navbar(){
 
   const { handleModel} =
@@ -20,6 +21,7 @@ function Navbar(){
               />
       </div>
 <div>
+  <Signin/>
 <MultipleSelectPlaceholder/>
 </div>
 <div>
@@ -40,13 +42,13 @@ Login
         <Link to="/">Home</Link>
       </div>
       <div>
-        <Link to="/book">Book a table</Link>
+        <Link to="/sort">Book a table</Link>
       </div>
       <div>
-        <Link to="/pay">Dineout Pay</Link>
+        <Link to="/">Dineout Pay</Link>
       </div>
       <div>
-        <Link to="/pass">Dineout Passport</Link>
+        <Link to="/">Dineout Passport</Link>
       </div>
       <div>
         <Link to="/success">Booking Details</Link>

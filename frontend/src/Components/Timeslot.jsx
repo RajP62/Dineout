@@ -6,6 +6,7 @@ import {useContext} from "react"
 import { CalenderContext } from "../Context/CalenderContext";
 import "./Timeslot.css";
 import { SigninContext } from "../Context/SignInContext";
+import { Signup } from "./signup";
 const Wrapper = styled.div`
   object-fit: contain;
   display: flex;
@@ -72,12 +73,13 @@ const {BookTime,Status,Guest,handleBookTime,handleStatus,addGuest,removeGuest}=u
   
   return (
     <>
+    <Signup/>
       <div className="scroll">
         <div className="title">
           <h1>Make a Reservation</h1>
         </div>
 
-        <div className="reservation__offerAndTime">
+        <div className="reservation__offerAndTime" style={{height:"auto"}}>
           {"23 December 2021" && (
             <div>
               <img
@@ -95,7 +97,9 @@ const {BookTime,Status,Guest,handleBookTime,handleStatus,addGuest,removeGuest}=u
               </>
             )}
           </div>
+          <div>
           <Calender/>
+          </div>
         </div>
 
         

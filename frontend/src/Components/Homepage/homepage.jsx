@@ -11,8 +11,21 @@ import {ImMobile2} from "react-icons/im";
 import googleplaystore from "../../images/Homepage/googleplaystore.png";
 import googleappstore from "../../images/Homepage/googleappstore.png";
 import connectUsingApp from "../../images/Homepage/connectusingapphomepage.png"
+import { useEffect, useState } from 'react';
+import { Signin } from '../signin';
 
 export const HomePage = () => {
+    const [data, setData] = useState([]);
+
+    const getData = async()=>{
+        let data = await fetch("https://backend-dineout.herokuapp.com/restaurants");
+        let realData = await data.json();
+        console.log(realData);
+    }
+
+    useEffect(()=>{
+        getData();
+    },[])
     return <>
         <Box sx={{ height: "400px", backgroundImage: `url(https://im1.dineout.co.in/images/uploads/misc/2021/Mar/31/oldherobannerwebfinal_bau.jpg)`, backgroundSize: "cover", display: "flex", justifyContent: "center", alignItems: "center" }}>
             <Box className="searchOuterBox">

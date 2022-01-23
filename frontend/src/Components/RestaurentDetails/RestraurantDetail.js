@@ -11,18 +11,22 @@ import YouMayLike from "./YouMayLike";
 import Help from "./Help";
 import { useParams } from "react-router";
 // import axios from "axios";
+import TimeSlots from "../Timeslot";
+import { useContext } from "react";
+import { ClickedContext } from "../../Context/clickedItem";
 
-const RestraurantDetail = () => {
-  let { id } = useParams();
-  // console.log("id");
+export const RestraurantDetail = () => {
+  const {clickedId} = useContext(ClickedContext);
+  console.log(clickedId)
 
   const [product, setProduct] = useState([]);
   const getProduct = async () => {
     const response = await fetch(
-      "https://backend-dineout.herokuapp.com/restaurants/id/61ea6739c152d2daf1462c17",
+      `https://backend-dineout.herokuapp.com/restaurants/id/${clickedId}`,
       { mode: "cors" }
     );
     const data = await response.json();
+    console.log(data)
 
     setProduct(data.data);
   };
@@ -73,7 +77,7 @@ const RestraurantDetail = () => {
 
 
 
-        <div>
+        {/* <div>
             <div className="container">
         <ul className="breadcrumbs">
           <li>
@@ -112,7 +116,7 @@ const RestraurantDetail = () => {
         </ul>
       </div>
       <br></br>
-        </div>
+        </div> */}
 
 
 
@@ -122,12 +126,13 @@ const RestraurantDetail = () => {
 
 
 
+    
         <div className="content marginT0">
           <div className="detailDiv">
             <div className="rdp-banner restnt-pics-slider">
-              <div className="pics-slider slider demo-gallery slick-initialized slick-slider">
-                <div className="slick-list draggable">
-                  <div className="slick-track">
+              <div className="pics-slider slider demo-gallery slick-initialized slick-slider" >
+                <div className="slick-list draggable" >
+                  <div className="slick-track" >
                     {/* <SimpleImageSlider
                       width="64%"
                       height={440}
@@ -225,11 +230,12 @@ const RestraurantDetail = () => {
 
             {/*   form   */}
 
-            <div className="sidebar-book-section"></div>
+            <div className="sidebar-book-section" style={{padding:"2%"}}>
+              <TimeSlots/>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 };
-export default RestraurantDetail;

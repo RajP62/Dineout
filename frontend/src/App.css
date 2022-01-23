@@ -37,11 +37,3 @@
   }
 }
 
-
-.scroll{
-  height: 300px;
-  width: 300px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  margin: auto;
-}

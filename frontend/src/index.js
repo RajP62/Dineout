@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { SigninContextProvider } from "./Context/SignInContext";
 import { BrowserRouter } from 'react-router-dom';
+import { ClickedContextProvider } from './Context/clickedItem';
 
 import { CalenderContextProvider } from './Context/CalenderContext';
 
@@ -11,15 +12,18 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
+    <ClickedContextProvider>
       <SigninContextProvider>
         <CalenderContextProvider>
-<BrowserRouter>
-<App />
-</BrowserRouter>
-         
-          </CalenderContextProvider>
-  
-    </SigninContextProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+
+        </CalenderContextProvider>
+
+      </SigninContextProvider>
+
+    </ClickedContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

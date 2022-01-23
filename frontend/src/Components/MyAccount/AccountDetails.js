@@ -2,7 +2,7 @@ import React from "react";
 import './AccountDetails.css';
 import PreviousOrder from './PreviousOrder'
 
-const AccountDetails = () => {
+export const AccountDetails = () => {
   return (
     <div className="AccountDetails_page">
       <div className="row my_acc">
@@ -72,4 +72,3 @@ const AccountDetails = () => {
       </div>
   );
 };
-export default AccountDetails;
