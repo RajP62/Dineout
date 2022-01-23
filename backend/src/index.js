@@ -15,5 +15,7 @@ app.use("/restaurants", restaurantCont);
 
 app.use("/cuisine", cuisinecont);
 
+app.use("/users", userCont);
+
 
 module.exports = app;
