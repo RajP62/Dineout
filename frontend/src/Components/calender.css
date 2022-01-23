@@ -1,0 +1,33 @@
+
+.btn{
+    height: 46px;
+      color: rgb(255, 255, 255);
+      border: none;
+      background: rgb(255, 100, 90);
+      width: 300px;
+      border-radius: 4px;
+      margin-right: 20px;
+  }
+  .guest__count--parent {
+      display: flex;
+      padding: 10px;
+      background-color: rgb(243, 243, 243);
+      border-radius: 4px;
+      -webkit-box-align: center;
+      align-items: center;
+      margin: 1px 0px;
+      height: 30px;
+  }
+  
+  
+  h4{
+    content: "";
+      display: block;
+      width: 25px;
+      margin-right: 60px;
+      padding: 0.2px;
+      border-bottom: none;
+      margin-top: 14px;
+  }
+  
+  
