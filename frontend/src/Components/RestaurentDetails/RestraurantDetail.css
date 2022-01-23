@@ -1,24 +1,3 @@
-.container-whole{
-  padding: 1rem;
-  margin: auto;
-
-}
-
-.contentCntr {
-  padding: 20px;
-}
-.contentCntr {
-  padding-top: 16px;
-  background: #f4f4f4;
-  margin-top: 0;
-  margin-bottom: 0;
-  width: 66%;
-  height: 100vh;
-}
-
-.container {
-  padding-right: 15px;
-}
 .breadcrumbs{
   float: left;
   margin-left:0%;
@@ -27,15 +6,15 @@
 
 .breadcrumbs li a {
   text-decoration: none;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
 }
 .breadcrumbs li i {
-    font-size: 0.6rem;
+    font-size: 0.65rem;
     color: rgb(121, 113, 113);
 }
 .breadcrumbs li {
   margin-right: 5px;
-  font-size: 12px;
+  font-size: 0.9rem;
   display: inline-block;
   vertical-align: left;
   text-transform: capitalize;
@@ -46,20 +25,7 @@
   border-radius: 5px;
 }
 
-.sidebar-book-section {
-  position: fixed;
-  overflow: auto;
-  right: 46.6667px;
-  top: 4rem;
-  background-color: grey;
-  border: 1px solid red;
-  width: 26%;
-  height: 400px;
-  width: 340px;
-  z-index: 100;
-  
 
-}
 
 .slick-list img {
   width: 100%;
@@ -89,12 +55,8 @@
 .text-ltgrey {
   color: #696969;
 }
-.text-ltgrey {
-  color: #696969;
-}
 .restnt-details_info .timing {
   padding: 7px 0 0 0;
-
 }
 a {
   text-decoration: none;
@@ -110,7 +72,6 @@ a {
   background: #5ba727;
   color: rgb(255, 255, 255);
   padding: 8px 12px;
-  display: inline-block;
   font-size: 18px;
   font-weight: 700;
 }

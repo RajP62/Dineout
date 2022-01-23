@@ -1,0 +1,13 @@
+.sidebar-book-section {
+  position: fixed;
+  overflow: auto;
+  right: 46.6667px;
+  top: 4rem;
+  background-color: grey;
+  border-radius: 5px;
+  width: 26%;
+  height: 400px;
+  z-index: 100;
+  
+
+}

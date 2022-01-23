@@ -1,7 +1,7 @@
 import React from 'react'
 import './RestraurantDetail.css'
 
-const TopHead = () =>{
+const TopHead = ({product}) =>{
     return (
         <div>
             <div className="container">
@@ -16,7 +16,7 @@ const TopHead = () =>{
           </li>
           <li>
             <a href="/mumbai-restaurants" itemprop="item">
-              <span itemprop="name">Mumbai</span>
+              <span itemprop="name">{product.state}</span>
             </a>
           </li>
           <li>
@@ -24,7 +24,7 @@ const TopHead = () =>{
           </li>
           <li>
             <a href="/mumbai-restaurants/navi-mumbai" itemprop="item">
-              <span itemprop="name">Navi Mumbai</span>
+              <span itemprop="name">{product.district}</span>
             </a>
           </li>
           <li>
@@ -32,13 +32,13 @@ const TopHead = () =>{
           </li>{" "}
           <li>
             <a href="/mumbai-restaurants/navi-mumbai/rabale" itemprop="item">
-              <span itemprop="name">Rabale</span>
+              <span itemprop="name">{product.place}</span>
             </a>
           </li>
           <li>
           <i class="fas fa-greater-than"></i>
           </li>{" "}
-          <li className="active">Pot Pourri by Monarch</li>
+          <li className="active">{product.title}</li>
         </ul>
       </div>
       <br></br>

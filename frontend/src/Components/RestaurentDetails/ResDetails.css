@@ -1,0 +1,22 @@
+.Whole-body-container {
+  border: 3px solid #fff;
+  margin: 0.5rem 2rem;
+  padding:1.5rem;
+  display: flex;
+  justify-content: space-around;
+  white-space: pre-wrap;
+  font-family: Metropolis, -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+}
+
+.res-detail-body {
+  width: 68%;
+
+  padding: 20px;
+}
+.cont-body-details {
+  width: 30%;
+
+  padding: 20px;
+}

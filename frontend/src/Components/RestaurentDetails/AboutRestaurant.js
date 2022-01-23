@@ -2,7 +2,7 @@ import React from "react";
 import './AboutRestaurant.css';
 
 
-export default function AboutRestaurant() {
+export default function AboutRestaurant({product}) {
   return (
     <div>
       <section id="about">
@@ -63,6 +63,7 @@ export default function AboutRestaurant() {
                   src="https://im1.dineout.co.in/images/uploads/misc/2019/Jun/19/grouprupee.png"
                 />
               </div>
+
               <div>
                 <h4>CUISINE</h4>
                 <a href="/mumbai-restaurants/powai/chandivali/north-indian-cuisine">

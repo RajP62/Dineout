@@ -16,11 +16,9 @@
 .similar-restaurants ul {
     display: flex;
 
-    vertical-align: middle;
-
 }
 .similar-restaurants ul li {
-width:250px !important;
+width:250px ;
 
     cursor: pointer;
     float: left;
@@ -33,7 +31,6 @@ width:250px !important;
 }
 .deal-card-wrap {
     border-radius: 3px;
-    position: relative;
     box-shadow: 0 0 10px rgb(0 0 0 / 20%);
     white-space: normal;
     background-color: #fff;
@@ -44,21 +41,20 @@ width:250px !important;
 .deal-card-wrap .img-wrap img {
     width: 100%;
     height: 100%;
-    display: block;
+
 }
 .deal-card-wrap .detail-wrap {
     padding: 0 15px;
 }
 .deal-card-wrap .deal-info {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
 }
 .deal-card-wrap .deal-info .left {
     min-width: 0;
 }
 .ellipsis {
     text-overflow: ellipsis;
-    overflow: hidden;
     white-space: nowrap;
 }
 .fs12 {

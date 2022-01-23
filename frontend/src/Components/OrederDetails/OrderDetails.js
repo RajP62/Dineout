@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -13,12 +13,31 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const OderDetails = () => {
+
+  const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      setIsLoading(true);
+      const res = await fetch(
+        'https://backend-dineout.herokuapp.com/users',
+      );
+      const json = await res.json();
+      setUsers(json.data);
+    
+      setIsLoading(false);
+    };
+    fetchProduct();
+  }, [setUsers]);
+
+
   return (
     <Box sx={{ overflow: "hidden"}}>
       <Paper sx={{ maxWidth: 850, my: 1, mx: "auto", p: 1}}>
         <Grid container wrap="nowrap" spacing={1}>
           <Grid item xs zeroMinWidth>
-            <Typography align="center">
+            <Typography align="center"> 
               <h1>ABs - Absolute Barbecues </h1>
             </Typography>
             <Typography align="center" container wrap="nowrap" color="#585858">
