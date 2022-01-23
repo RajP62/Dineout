@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { useContext, useState } from "react";
 
 import { SigninContext } from "../Context/SignInContext";
+
+
+
 import Model from "react-modal";
 
 const Style = styled.div`
@@ -177,33 +180,49 @@ export const Signin = () => {
   const { model, handleModel, handleSignupModel, handleOtp, handleSetFinal } =
     useContext(SigninContext);
   // Inputs
-  const [mynumber, setnumber] = useState("");
-  const [bug, setBut] = useState(false);
-//   const signin = () => {
-//     if (mynumber === "" || mynumber.length < 10) return;
 
-//     let verify = new firebase.auth.RecaptchaVerifier("recaptcha-container");
-//     auth
-//       .signInWithPhoneNumber("+91" + mynumber, verify)
-//       .then(async (result) => {
-//         const { data } = await getUserByMobile(`+91` + mynumber);
-//         if (data) {
-//           setBut(false);
-//           handleSetFinal(result);
-//           localStorage.setItem("dineout-userId", JSON.stringify(data?._id));
-//           localStorage.setItem("number", JSON.stringify(mynumber));
-//           handleOtp();
-//         } else {
-//           setBut(true);
-//           // alert("No user Found");
-//           // handleSignupModel();
-//         }
-//       })
-//       .catch((err) => {
-//         alert(err);
-//         window.location.reload();
-//       });
-//   };
+  const [mynumber, setnumber] = useState("");
+  const [auth,setauth] = useState(false)
+
+
+
+  const signin = () => {
+
+    console.log(mynumber)
+    console.log("hello")
+    if (mynumber === "" || mynumber.length < 10){
+      setauth(false)
+      alert("enter valid number")
+      
+    }
+    
+    else{
+setauth(true)
+handleModel()
+    }
+  }
+    // let verify = new firebase.auth.RecaptchaVerifier("recaptcha-container");
+    // auth
+    //   .signInWithPhoneNumber("+91" + mynumber, verify)
+    //   .then(async (result) => {
+    //     const { data } = await getUserByMobile(`+91` + mynumber);
+    //     if (data) {
+    //       setBug(false);
+    //       handleSetFinal(result);
+    //       localStorage.setItem("dineout-userId", JSON.stringify(data?._id));
+    //       localStorage.setItem("number", JSON.stringify(mynumber));
+    //       handleOtp();
+    //     } else {
+    //       setBug(true);
+    //       // alert("No user Found");
+    //       // handleSignupModel();
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     alert(err);
+    //     window.location.reload();
+    //   });
+  // };
 
   return (
     <Model style={customStyles} isOpen={model}>
@@ -233,15 +252,15 @@ export const Signin = () => {
               value={mynumber}
               placeholder="Enter Your Number"
               onChange={(e) => setnumber(e.target.value)}
-              type="text"
+              type="number"
             />
           </div>
         </div>
         <div id="recaptcha-container"></div>
-        <div className={bug ? "noUserCheck" : "hide"}>
+        {/* <div className={!auth ? "noUserCheck" : "hide"}>
           User Not Found, Signup First
-        </div>
-        <button  className="signup_button">
+        </div> */}
+        <button  onClick={signin} className="signup_button">
           SEND OTP
         </button>
         <div className="lines">
@@ -298,7 +317,7 @@ export const Signin = () => {
             Don't have an account?{" "}
             <span
               onClick={() => {
-                setBut(false);
+               
                 handleSignupModel();
               }}
             >
