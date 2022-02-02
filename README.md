@@ -34,7 +34,7 @@
 3. Icons: [Font Awesome](https://fontawesome.com/)
 
 
-## [Project Link](dineout-rajp62.vercel.app/)
+## [Project Link](https://dineout-rajp62.vercel.app/)
 
 
 
