@@ -29,7 +29,7 @@
 
 
 # Sources
-1. Images: [Nykaa](https://www.nykaa.com/)
+1. Images: [Dineout Image])
 2. Fonts: [Google Fonts](https://fonts.google.com/)
 3. Icons: [Font Awesome](https://fontawesome.com/)
 
@@ -40,15 +40,15 @@
 
 # Some Snapshots of Website:-
 
-![Homepg](https://user-images.githubusercontent.com/58744974/135759931-1c43b71f-514c-4d71-b95f-164059f903ba.jpg)
+![Homepg]()
 
-![acnt](https://user-images.githubusercontent.com/58744974/135760010-c817a14c-c36c-4ef7-94c2-c5dece25accc.jpg)
+![acnt]()
 
-![product](https://user-images.githubusercontent.com/58744974/135760068-3742f04a-3e32-4680-b19f-2fc1479032b5.jpg)
+![product]()
 
-![bag](https://user-images.githubusercontent.com/58744974/135760150-fb76cde2-8562-4a26-a8bb-f1dc0a282270.jpg)
+![bag]()
 
-![pay](https://user-images.githubusercontent.com/58744974/135760160-d95b779a-c19b-451d-8068-5365b957d4bb.jpg)
+![pay]()
 
 
 
