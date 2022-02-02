@@ -34,7 +34,7 @@
 3. Icons: [Font Awesome](https://fontawesome.com/)
 
 
-## [Project Link](https://clonednykaa.herokuapp.com/)
+## [Project Link](dineout-rajp62.vercel.app/)
 
 
 
