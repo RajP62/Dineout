@@ -66,7 +66,7 @@ const Tabledisplaydata = () => {
           <Grid className="right">
             <div className="right-heading">
               <sapn className="right-heading-head">
-                <h2 className="heading1">Best Restaurants Near Me in Bangalore</h2>
+                <h2 className="heading1">Best Restaurants Near Me in Delhi</h2>
                 <h3 className="heading1 text1"> Sort By</h3>
 
               </sapn>
@@ -96,7 +96,7 @@ const Tabledisplaydata = () => {
                         image={mainData.imagePrimary}
                       />
                       <CardContent>
-                        <Typography gutterBottom variant="h6" component="div">
+                        <Typography className="card-title" gutterBottom variant="h6" component="div">
                           {mainData.title}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">

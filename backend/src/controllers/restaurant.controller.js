@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Restaurants = require("../models/restaurant.model");
 
-<<<<<<< HEAD
 router.get("", async(req,res)=>{
     try{
         let data = await Restaurants.find().populate("reviews").populate({path:"about.cuisine", model:"cuisine"}).populate({path:"about.type",model:"type"}).populate({path:"about.quickFilters", model:"quickfilter"}).populate({path:"about.facilities", model:"facility"}).lean().exec();
@@ -44,7 +43,6 @@ router.get("/featured", async(req,res)=>{
     }
 })
 module.exports = router;
-=======
 router.get("", async (req, res) => {
   try {
     let data = await Restaurants.find()
@@ -95,4 +93,3 @@ router.get("/id/:id", async (req, res) => {
 });
 
 module.exports = router;
->>>>>>> 61faa9005aa211b32f918a193418cf0f6c430b3b

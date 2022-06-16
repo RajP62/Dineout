@@ -115,23 +115,54 @@ const FilterData = () => {
                   <Box className="modal">
 
 
-                    <Typography sx={{ fontSize: 18, fontWeight: 555, color: "GrayText" }}>Quick Filters</Typography>
+                    <Typography sx={{ fontSize: 18, fontWeight: 555, color: "GrayText" }}>Cuisines</Typography>
 
                     <Typography>
                       <TextField className="search-bar" id="outlined-basic" label="Search" variant="outlined" />
                       <FormGroup>
-                        <sapn className="modal-content">
-                          <FormControlLabel control={<Checkbox />} label="North Indian" />
-                          <FormControlLabel control={<Checkbox />} label="Chinese" />
-                          <FormControlLabel control={<Checkbox />} label="Fast Food" />
-                          <FormControlLabel control={<Checkbox />} label="Desserts" />
-                        </sapn>
+                      <div class="column">
                         <div className="modal-content">
-                          <FormControlLabel control={<Checkbox />} label="5 Star" />
-                          <FormControlLabel control={<Checkbox />} label="Happy Hour" />
-                          <FormControlLabel control={<Checkbox />} label="Pure Veg" />
-                          <FormControlLabel control={<Checkbox />} label="Dessert" />
+                          <span className="modal-list">
+                        <a href="#">Afgani</a>
+                        <a href="#">Asian</a>
+                        <a href="#">African</a>
+                        <a href="#">Austrailia</a>
+                        <a href="#">Andhra</a>
+                        <a href="#">Avadhi</a>
+                        <a href="#">Bakery</a>
+                        </span>
                         </div>
+                        <div className="modal-content">
+                        <span className="modal-list">
+                        <a href="#">Bangali</a>
+                        <a href="#">Bihari</a>
+                        <a href="#">Biryani</a>
+                        <a href="#">Burger</a>
+                        <a href="#">Cantonse</a>
+                        <a href="#">Coastal</a>
+                        </span>
+                        </div>
+                        <div className="modal-content">
+                        <span className="modal-list">
+                        <a href="#"></a>
+                        <a href="#">Coffe</a>
+                        <a href="#">Deli</a>
+                        <a href="#">Desserts</a>
+                        <a href="#">Doughnuts</a>
+                        <a href="#">Drinks</a>
+                        </span>
+                        </div>
+                        <div className="modal-content">
+                        <span className="modal-list">
+                        <a href="#">European</a>
+                        <a href="#">Finger Food</a>
+                        <a href="#">Fast Food</a>
+                        <a href="#">Greek</a>
+                        <a href="#">Indian</a>
+                        <a href="#">Japnese</a>
+                        </span>
+                        </div>
+                    </div>
                       </FormGroup>
                     </Typography>
 

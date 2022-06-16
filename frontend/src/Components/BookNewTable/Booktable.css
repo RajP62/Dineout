@@ -80,11 +80,16 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 450px;
+    width: fit-content;
+    overflow-x: scroll;
     border: 2px solid #000;
     box-shadow: 24;
     background-color: white;
     padding: 20px;
+}
+.modal-list{
+    display: flex;
+    flex-direction: column;
 }
 .modal-content{
     display: inline-block
@@ -112,6 +117,9 @@ body{
 }
 .coupan-text1{
     font-size: 8px;
+}
+.card-title{
+    text-align: left;
 }
 .coupan-button{
     max-width: 70px;
