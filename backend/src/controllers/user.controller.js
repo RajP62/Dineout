@@ -40,8 +40,8 @@ router.post("/login", async(req, res)=>{
 
         const refresh_jwt = jwt.sign({firstName,lastName, email:mail, role}, process.env.REFRESH_KEY, {expiresIn:"7d"});
 
-        res.cookie('access', access_jwt, {httpOnly: true});
-        res.cookie('refresh', refresh_jwt, {httpOnly: true});
+        res.cookie('access', access_jwt, {httpOnly: true, maxAge:600000});
+        res.cookie('refresh', refresh_jwt, {httpOnly: true, maxAge: 10080000});
 
         res.send({error: false, message: "User successfully logged in"});
     }
