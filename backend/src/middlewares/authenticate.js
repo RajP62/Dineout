@@ -1,6 +1,5 @@
 require('dotenv').config();
 const jwt = require("jsonwebtoken");
-
 const verifyToken = (token)=>{
     return new Promise((resolve, reject)=>{
         jwt.verify(token, process.env.JWT_KEY, function(err, token){
@@ -11,14 +10,10 @@ const verifyToken = (token)=>{
 }
 
 module.exports = async (req, res, next)=>{
-    const bearerToken = req.headers.authorization;
-    if(!bearerToken || !bearerToken.startsWith("Bearer ")) return res.status(400).send({error:true, message:"Authentication failed"});
-
-    const token = bearerToken.trim().split(" ")[1];
+    const bearerToken = req.cookies?.access;
     let user;
     try{
-        user= await verifyToken(token);
-
+        user= await verifyToken(bearerToken);
     }
     catch(e){
         return res.status(400).send({error:true, message: "Authentication failed due to invalid token"});
