@@ -41,14 +41,41 @@ router.post("/login", async(req, res)=>{
         const refresh_jwt = jwt.sign({firstName,lastName, email:mail, role}, process.env.REFRESH_KEY, {expiresIn:"7d"});
 
         res.cookie('access', access_jwt, {httpOnly: true, maxAge:600000});
-        res.cookie('refresh', refresh_jwt, {httpOnly: true, maxAge: 10080000});
+        res.cookie('refresh', refresh_jwt, {httpOnly: true, maxAge: 604800000});
 
         res.send({error: false, message: "User successfully logged in"});
     }
     catch(e){
         return res.send({error:true, message: e.message});
     }
-})
+});
+
+router.get("/refresh", async(req, res)=>{
+    try{
+        const token = req.cookies?.refresh;
+        if(!token){
+            return res.send({error: true, message: "Refresh token doesn't exist"});
+        }
+        let decoded;
+        try{
+            jwt.verify(token, process.env.REFRESH_KEY, function(err, resp){
+                if(err) return res.send({error: true, message: "Invalid refresh token"});
+                decoded=resp;
+            });
+        }
+        catch(e){
+            return res.send({error: true, message: `error is ${e.message}`});
+        }
+        const {firstName, lastName, email, role} = decoded;
+
+        const access_jwt = jwt.sign({firstName, lastName, email, role}, process.env.JWT_KEY, {expiresIn: "10m"});
+        res.cookie("access", access_jwt, {httpOnly : true, maxAge: 600000});
+        return res.send({error: false, message: "Access token sent successfully"});
+    }
+    catch(e){
+        return res.send({error: true, message: e.message});
+    }
+});
 
 router.get("", async(req,res)=>{
     try{
