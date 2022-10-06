@@ -8,16 +8,30 @@ const quickfilterModel = require("../models/quickfilter.model");
 router.get("", authenticate, authorise(['user', 'admin']), async(req,res)=>{
     try{
         const page = req.query?.page || 1;
-        const quick_filters = req.query?.quick_filters || '';
-        const cuisines = req.query?.cuisines || '';
-        const tags = req.query?.tags || '';
-        const features = req.query?.features || '';
-        const dineout_passport = req.query.dineout_passport || '';
-        const _sort = req.query?._sort || '';
+        const limit = req.query?.limit || 10;
+        let quick_filters = req.query?.quick_filters || "";
+        let cuisines = req.query?.cuisines || "";
+        let tags = req.query?.tags || "";
+        let features = req.query?.features || "";
+        let dineout_passport = req.query.dineout_passport || "";
+        // let _sort = req.query?._sort || "";
+        let facilities = req.query?.facilities || "";
+        let bestSelling = req.query?.bestselling || "";
+        const skip = (page-1) * limit;
+        quick_filters = quick_filters? quick_filters.split("&") : [];
+        cuisines = cuisines? cuisines.split("&") : [];
+        tags = tags? tags.split("&") : [];
+        features = features? features.split("&") : [];
+        dineout_passport = dineout_passport? dineout_passport.split("&") : [];
+        facilities = facilities? facilities.split("&") : [];
+        bestSelling = bestSelling? bestSelling.split("&") : [];
+
 
         
-        let data = await Restaurants.find().populate("reviews").populate({path:"about.cuisine", model:"cuisine"}).populate({path:"about.type",model:"type"}).populate({path:"about.quickFilters", model:"quickfilter"}).populate({path:"about.facilities", model:"facility"}).lean().exec();
-        res.status(200).json({data});      
+        let data = await Restaurants.aggregate([{ $lookup: { from: "cuisines", localField: "cuisine", foreignField: "ID", as: "about.cuisine" } }, { $lookup: { from: "types", localField: "type", foreignField: "ID", as: "about.type" } }, { $lookup: { from: "quickfilters", localField: "quickFilters", foreignField: "ID", as: "about.quickFilters" } }, { $lookup: { from: "facilities", localField: "facilities", foreignField: "ID", as: "about.facilities" } }, { $unset: ["about.facilities._id", "about.quickFilters._id", "about.type._id", "about.cuisine._id"] }, { $project: { "_id": 1, "imagePrimary": 1, "altImages": 1, "title": 1, "state": 1, "district": 1, "place": 1, "featured": 1, "contact": 1, "fssai": 1, "avgcost": 1, "about.cuisine": "$about.cuisine.name", "about.type": "$about.type.name", "about.quickFilters": "$about.quickFilters.name", "about.facilities": "$about.facilities.facilityName", "about.bestselling":1}}, {$match:{$and: [{$expr:{$setIsSubset:[bestSelling, "$about.bestselling"]}}, {$expr:{$setIsSubset:[facilities, "$about.facilities"]}}, {$expr:{$setIsSubset:[quick_filters, "$about.quickFilters"]}}, {$expr:{$setIsSubset:[['Andaz Delhi', '5 Star'], "$about.type"]}}, {$expr:{$setIsSubset:[cuisines, "$about.cuisine"]}}]}}, {$project: {"about":0}}]).skip(skip).limit(limit);
+        // without sorting 
+
+        return res.status(200).json({data});
     }
     catch(e){
         return res.status(500).json({status:"failed",message:e.message});
