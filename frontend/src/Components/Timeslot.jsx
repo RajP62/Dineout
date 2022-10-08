@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import Calender from "./calender";
 import {useContext} from "react"
-
+import displayRazorpay from "../utils/PaymentGateway";
 import { CalenderContext } from "../Context/CalenderContext";
 import "./Timeslot.css";
 import { SigninContext } from "../Context/SignInContext";
@@ -61,13 +61,30 @@ const Wrapper = styled.div`
 `;
 
 const TimeSlots = ({ timeStatus, setTimeStatus }) => {
+
+  const loadScript = (src)=>{
+    return new Promise((resolve)=>{
+       const script = document.createElement("script");
+       script.src = src;
+       script.onload = ()=>{
+        resolve(true);
+       }
+       script.onerror = ()=>{
+        resolve(false);
+       }
+
+       document.body.appendChild(script);
+    });
+  }
   
+  useEffect(()=>{
+    loadScript(`https://checkout.razorpay.com/v1/checkout.js`);
+  })
   
 
 const {handleSignupModel} = useContext(SigninContext)
 
 const {BookTime,Status,Guest,handleBookTime,handleStatus,addGuest,removeGuest}=useContext(CalenderContext)
-
 
   
   
@@ -276,10 +293,10 @@ const {BookTime,Status,Guest,handleBookTime,handleStatus,addGuest,removeGuest}=u
           <p>Any special request (Optional)</p>
         </div>
       </div>
-
+{/* handleSignupModel() should be called in button click */}
       {Guest > 0 ? (
                 
-      <div class="continue__parent"><button onClick={handleSignupModel} className="btn">Continue</button></div>
+      <div className="continue__parent"><button onClick={displayRazorpay} className="btn">Continue</button></div>
                 ) : null}
      
     </>
