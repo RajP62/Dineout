@@ -73,7 +73,7 @@ const {BookTime,Status,Guest,handleBookTime,handleStatus,addGuest,removeGuest}=u
   
   return (
     <>
-    <Signup/>
+    
       <div className="scroll">
         <div className="title">
           <h1>Make a Reservation</h1>

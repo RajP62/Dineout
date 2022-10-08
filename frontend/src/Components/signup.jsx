@@ -5,52 +5,31 @@ import { useContext,useEffect,useState } from "react";
 import { SigninContext } from "../Context/SignInContext";
 
 import Model from "react-modal";
+import { useDispatch, useSelector } from "react-redux";
+import { SIGNIN, SIGNUP } from "../Store/actiontype/auth.action.type";
 
 const Style = styled.div`
-  min-height: 532px;
+  height:550px;
 
   
   width: 464px;
-  border-radius: 4px;
+ 
   box-shadow: 0px 0px 4px gray;
   margin: auto;
-  padding: 40px;
-  padding-top: 15px;
+  padding: 30px;
+  padding-top: 5px;
  
   h1 {
     font-weight: 600;
     font-size: 24px;
-    line-height: 30px;
+    
     text-align: center;
     color: #333333;
   }
-  .inputBox {
-    display: flex;
-    margin-top: 20px;
-    flex-direction: column;
-    gap: 10px;
-    p {
-      font-size: 12px;
-      
-      color: #333333;
-      text-align:left;
-      margin:0;
+ 
 
-    }
-    div {
-      height: 40px;
-      display: flex;
-      align-items: center;
-      border: 1px solid #3595FF;
-      input {
-        width: 100%;
-        border: none;
-        padding: 5px;
-      }
-      input:focus {
-        outline: none !important;
-      }
-    }
+
+   
   }
   .signup_button {
     height: 46px;
@@ -145,7 +124,8 @@ const Style = styled.div`
   }
   .top_cross {
     position: relative;
-    left: 380px;
+    left: 440px;
+    top:20px;
     cursor: pointer;
     width:24px;
     height:24px;
@@ -154,8 +134,21 @@ const Style = styled.div`
     justify-content:center;
     align-items: center;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.03)
+   
+    
   }
 `;
+const inputstyles = {
+  borderRadius: "5px",
+  display: "block",
+  width: "100%",
+  height: "36px",
+  marginTop: "10px",
+  marginBottom: "0px",
+  border: "0.5px solid black"
+}
+
+
 const customStyles = {
   content: {
     top: "50%",
@@ -178,7 +171,7 @@ Model.setAppElement("#root");
 
 export const Signup = () => {
 
-  const { signupModel, handleSignupModel, handleModel,handleSignupData ,signup} =
+  const { signupModel, handleSignupModel, handleModel,handleSignupData } =
     useContext(SigninContext);
 
     const [form,setForm]=useState({
@@ -201,10 +194,10 @@ export const Signup = () => {
 
 
     
-    const setdata = ()=>{
-
-
-      handleModel()
+    const handlesubmit = (e)=>{
+console.log("hello")
+e.preventDefault()
+      
       let payload = {
           firstName:form.firstName,
   lastName:form.lastName,
@@ -213,7 +206,7 @@ export const Signup = () => {
  
       }
       payload= JSON.stringify(payload)
-      console.log(payload)
+      console.log(payload,payload)
 
       fetch("https://backend-dineout.herokuapp.com/users/add",{
           method:"POST",
@@ -226,7 +219,8 @@ export const Signup = () => {
 
       .then((data)=>data.json())
       .then((res) =>{
-          console.log(res)
+          console.log(res,"res")
+dispatch({type:SIGNIN})
       })
 .catch((err)=>{
     console.log(err)
@@ -235,48 +229,33 @@ export const Signup = () => {
   }
 
 
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+ 
 
     // const dispatch = useDispatch();
 
-    useEffect(() => {
-      if (signupModel) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = 'unset';
+    // useEffect(() => {
+    //   if (signupModel) {
+    //     document.body.style.overflow = 'hidden';
+    //   } else {
+    //     document.body.style.overflow = 'unset';
        
 
 
-      }
-    }, [signupModel]);
+    //   }
+    // }, [signupModel]);
 
    
     console.log(signupModel)
 
-    // const handleLc = (e)=>{
-    //   localStorage.setItem('data',JSON.stringify(e))
-    // }
-    // const [name,setName] = useState('')
-    // const [num,setNumber] = useState('')
-    
-    // const handleSignup = ()=>{
-    //   const payload = {
-    //     name: name,
-    //     mobile: '+91' + num,
-    //   }
-    //   handleSignupData(payload)
-    //   handleModel()
-     
+    let {signup} = useSelector((state)=>state)
+    console.log(signup,"show")
 
-    // }
+let dispatch = useDispatch()
   return (
     <>
-     <Model style={customStyles} isOpen={signupModel}>
+     <Model style={customStyles} isOpen={signup}>
         <Style>
-          <div onClick={() => handleSignupModel()}  className="top_cross">
+          <div onClick={()=>dispatch({type:SIGNUP})}  className="top_cross">
             <svg
               width="12"
               height="12"
@@ -291,34 +270,38 @@ export const Signup = () => {
               />
             </svg>
           </div>
+          <form onSubmit={handlesubmit}>
           <h1>Sign Up</h1>
-          <div className="inputBox">
+          
             <p>First name</p>
-            <div>
-              <input onChange={handlechange} name="firstName" placeholder="Enter Your First Name" type="text" />
-            </div>
-          </div>
-          <div className="inputBox">
+          
+              <input style={inputstyles} onChange={handlechange} name="firstName" placeholder="Enter Your First Name" type="text" />
+          
+       
             <p>Last name</p>
-            <div>
-              <input onChange={handlechange}  name="lastName" placeholder="Enter Your Last  Name" type="text" />
-            </div>
+           
+              <input style={inputstyles} onChange={handlechange}  name="lastName" placeholder="Enter Your Last  Name" type="text" />
+         
             <p>Email</p>
-            <div>
-              <input onChange={handlechange}  name="email" placeholder="Enter Your Last  Name" type="text" />
-            </div>
+          
+              <input style={inputstyles} onChange={handlechange}  name="email" placeholder="Enter Your Last  Name" type="email" />
+           
             <p>Password</p>
-            <div>
-              <input onChange={handlechange}  name="password" placeholder="Enter Your Last  Name" type="text" />
-            </div>
-          </div>
-          <button  onClick={setdata}   className="signup_button">SIGN UP</button>
-          <div className="lines">
+          
+              <input style={inputstyles} onChange={handlechange}  name="password" placeholder="Enter Your Last  Name" type="text" />
+            
+          
+          <button type = "submit"  className="signup_button">SIGN UP</button>
+          
+          </form>
+          {/* onClick={()=>dispatch({type:SIGNIN})} */}
+          
+          {/* <div className="lines">
             <span></span>
             <p>Or login via</p>
             <span></span>
-          </div>
-          <div className="oath_links">
+          </div> */}
+          {/* <div className="oath_links">
             <div className="gmail">
               <svg
                 width="16"
@@ -361,13 +344,13 @@ export const Signup = () => {
               </svg>
               <p>Facebook</p>
             </div>
-          </div>
-          <div className="end_line">
+          </div>  */}
+          {/* <div className="end_line">
             <p>
               Already have an account?{" "}
               <span onClick={() => handleModel()} >Login</span>
             </p>
-          </div>
+          </div> */}
         </Style>
         </Model>
      

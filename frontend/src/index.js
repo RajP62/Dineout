@@ -4,21 +4,24 @@ import './index.css';
 import { SigninContextProvider } from "./Context/SignInContext";
 import { BrowserRouter } from 'react-router-dom';
 import { ClickedContextProvider } from './Context/clickedItem';
+import {Provider} from "react-redux"
 
 import { CalenderContextProvider } from './Context/CalenderContext';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { store } from './Store/store';
 
 ReactDOM.render(
   <React.StrictMode>
     <ClickedContextProvider>
       <SigninContextProvider>
         <CalenderContextProvider>
+          <Provider store={store}>
           <BrowserRouter>
             <App />
           </BrowserRouter>
-
+          </Provider>
         </CalenderContextProvider>
 
       </SigninContextProvider>
