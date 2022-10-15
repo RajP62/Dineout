@@ -1,7 +1,8 @@
 .wholeBodyContainer{
     display: flex;
     justify-content: space-between;
-    margin: 5%;
+    padding: 5%;
+    background-color: rgb(243,243,243)
 }
 
 .firstContainer{

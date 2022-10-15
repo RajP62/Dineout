@@ -199,12 +199,26 @@ export const Signin = () => {
   let emailref=useRef("")
   let passwordref= useRef("")
 
-  const { model, handleModel, handleSignupModel, handleOtp, handleSetFinal } =
-    useContext(SigninContext);
+
   // Inputs
 
  let handlesubmit= (e)=>{
-e.preventdefault()
+
+e.preventDefault()
+
+let payload = {
+  email:emailref.current.value,
+  password:passwordref.current.value
+}
+console.log("payload",payload)
+fetch("http://localhost:4000/users/login",{
+  method:"POST",
+  headers:{
+    "Content-Type":"application/json"
+  },
+  body:JSON.stringify(payload)
+}).then((res)=>res.json()).then((res)=>{console.log(res,"res")})
+
 
 
  }
@@ -242,7 +256,7 @@ let {signin}=useSelector((state)=>state)
 <input ref={emailref} style ={inputstyles} placeholder="enter email"></input>
 <label>Password</label>
 <input ref={passwordref} style={inputstyles} placeholder="enter password"></input>
-<button type="submit"  onClick={signin} className="signup_button">
+<button type="submit"  className="signup_button">
           login
         </button>
 

@@ -2,7 +2,7 @@ body{
     font-family: Metropolis,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 .Bookatable_Outerbox{
-    background-color: rgb(231, 225, 225);
+    background-color: rgb(244,244,244);
     height: auto;
     margin-top: 2%;
 }
@@ -33,7 +33,7 @@ body{
     display: inline-block;
 }
 .search-bar{
-    background-color: rgb(231, 225, 225);
+    background-color: rgb(244,244,244);
     padding: 0;
 }
 .text1{
@@ -46,7 +46,7 @@ body{
     width: 75%;
     float: left;
     margin-bottom: 20px;
-    background-color: rgb(231, 225, 225);
+    background-color: rgb(244,244,244);
 }
 .right-heading-head {
     display: inline-block;

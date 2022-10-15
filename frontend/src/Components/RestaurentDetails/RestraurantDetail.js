@@ -1,208 +1,147 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 import "./RestraurantDetail.css";
-import DinePage from "./DinePage";
-import Menu from "./Menu";
-// import SimpleImageSlider from "react-simple-image-slider";
-import AboutRestaurant from "./AboutRestaurant";
-import OverView from "./OverView";
-import NewOffers from "./NewOffers";
-import TopHead from "./TopHead";
-import YouMayLike from "./YouMayLike";
-import Help from "./Help";
+
+
+import Grid from '@mui/material/Grid';
+// import DinePage from "./DinePage";
+// import Menu from "./Menu";
+
+// import AboutRestaurant from "./AboutRestaurant";
+// import OverView from "./OverView";
+// import NewOffers from "./NewOffers";
+// import TopHead from "./TopHead";
+// import YouMayLike from "./YouMayLike";
+// import Help from "./Help";
 import { useParams } from "react-router";
-// import axios from "axios";
-import TimeSlots from "../Timeslot";
+
+// import TimeSlots from "../Timeslot";
 import { useContext } from "react";
 import { ClickedContext } from "../../Context/clickedItem";
+import ImageSlider from "../ImageSlider";
+
+
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import { useDispatch, useSelector } from "react-redux";
+import { RESTAURANTDETAILS } from "../../Store/actiontype/auth.action.type";
+
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+
+
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
+
+
+
+
+
 
 export const RestraurantDetail = () => {
+
   const {clickedId} = useContext(ClickedContext);
-  console.log(clickedId)
-
-  const [product, setProduct] = useState([]);
-  const getProduct = async () => {
-    const response = await fetch(
-      `https://backend-dineout.herokuapp.com/restaurants/id/${clickedId}`,
-      { mode: "cors" }
-    );
-    const data = await response.json();
-    console.log(data)
-
-    setProduct(data.data);
-  };
-  useEffect(() => {
-    getProduct();
-  }, [setProduct]);
-
-  /*  const [product, setProduct] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchProduct = async () => {
-      setIsLoading(true);
-      const res = await fetch(
-        'https://backend-dineout.herokuapp.com/restaurants/id/61ea6739c152d2daf1462c19',
+    console.log(clickedId,"id")
+  
+    const [product, setProduct] = useState([]);
+    const getProduct = async () => {
+      const response = await fetch(
+        `http://localhost:4000/restaurants/id/${clickedId}`,
+        { mode: "cors" }
       );
-      const json = await res.json();
-      setProduct(json);
-    
-      setIsLoading(false);
+      const data = await response.json();
+      console.log(data,"response")
+  
+      setProduct(data.data);
+      dispatch({type:RESTAURANTDETAILS,payload:{name:data.data.title,adress:`${data.data.place}-${data.data.district}`}})
     };
-    fetchProduct();
-  }, [setProduct]);
+    useEffect(() => {
+      getProduct();
+    }, []);
+  
+  
+  
+    console.log(product)
+  
+ let {restaurantDetails} = useSelector((state)=>state)
+  
+   var { title, about,state, place, district, imagePrimary, altImages } = product;
+      
+    let dispatch = useDispatch()
 
-  console.log(product)*/
 
-  // console.log(product.about[0].cuisine[0].name)
-
-  const { title, about,state, place, district, imagePrimary, altImages } = product;
-  // console.log(altImages[0])
-
-  //   const images = [
-  //     { url: imagePrimary },
-
-  //   ];
-
-  //   const testImages = [imagePrimary,...altImages];
-  //   console.log(testImages);
-  // for(var i = 0; i < about.cuisine.length; i++) {
-  //   var cuis = about.cuisine[i];
-  //   console.log(cuis)
-  // }
+console.log(restaurantDetails,"restaurant")
 
   return (
-    <div className="container-whole">
-      <div className="contentCntr">
-        {/* <TopHead /> */}
 
+<Grid  container width={800} columns={1} gridTemplateRows={2} spacing={2}>
+  <Grid item xs={6} md={8}>
+    <Item  >
 
+    <ImageSlider data = {altImages}></ImageSlider>
+    </Item>
+    <Item>
 
-        {/* <div>
-            <div className="container">
-        <ul className="breadcrumbs">
-          <li>
-            <a href="/" itemprop="item">
-              <span itemprop="name">dineout</span>
-            </a>
-          </li>
-          <li>
-          <i class="fas fa-greater-than"></i>
-          </li>
-          <li>
-            <a href="/mumbai-restaurants" itemprop="item">
-              <span itemprop="name">{state}</span>
-            </a>
-          </li>
-          <li>
-          <i class="fas fa-greater-than"></i> 
-          </li>
-          <li>
-            <a href="/mumbai-restaurants/navi-mumbai" itemprop="item">
-              <span itemprop="name">{district}</span>
-            </a>
-          </li>
-          <li>
-          <i class="fas fa-greater-than"></i>
-          </li>{" "}
-          <li>
-            <a href="/mumbai-restaurants/navi-mumbai/rabale" itemprop="item">
-              <span itemprop="name">{place}</span>
-            </a>
-          </li>
-          <li>
-          <i class="fas fa-greater-than"></i>
-          </li>{" "}
-          <li className="active">{title}</li>
-        </ul>
-      </div>
-      <br></br>
-        </div> */}
-
-
-
-
-
-
-
-
-
-    
-        <div className="content marginT0">
-          <div className="detailDiv">
-            <div className="rdp-banner restnt-pics-slider">
-              <div className="pics-slider slider demo-gallery slick-initialized slick-slider" >
-                <div className="slick-list draggable" >
-                  <div className="slick-track" >
-                    {/* <SimpleImageSlider
-                      width="64%"
-                      height={440}
-                      images={"images"}
-                      showNavs={true}
-                    /> */}
-
-                    <img src={imagePrimary} />
-                  </div>
-                </div>
-              </div>
-
+      
               <section className="rdp-section restnt-details d-flex">
                 <div className="restnt-details_info">
                   <h1>{title}</h1>
                   <div className="restnt-cost">
                     <a
                       href="/mumbai-restaurants/navi-mumbai/rabale/continental-cuisine"
-                      className="text-ltgrey"
-                    >
+                      className="text-ltgrey"               >
                       {product.avgcost} |{" "}
                    
-                    </a>
-                    <a
+                    </a>                     <a
                       href="/mumbai-restaurants/navi-mumbai/rabale/mexican-cuisine"
-                      className="text-ltgrey"
-                    >
-                      {/* {product.about.cuisine[1].name} */}
-                    </a>
-                    <a
-                      href="/mumbai-restaurants/navi-mumbai/rabale/american-cuisine"
-                      className="text-ltgrey"
-                    >
-                      {/* {product.about.cuisine[2].name} */}
-                    </a>
-                  </div>
-                  <div className="restnt-name">
-                    <a
-                      href="/mumbai-restaurants/navi-mumbai/rabale"
-                      className="text-ltgrey"
-                    >
-                      {place}|{" "}
-                    </a>
-                    <a href="/mumbai-restaurants" className="text-ltgrey">
-                      {district} |{" "}
-                    </a>
-                    <a
-                      href=""
-                      className="text-blue font-bold"
-                      item-clicked="direction"
-                      data-w-onclick="restroNavClicked|w1"
-                    >
-                      <img src="https://im1.dineout.co.in/images/uploads/mailer/2019/Jul/11/path.png" />{" "}
+                     className="text-ltgrey"                    >
+                     {/* {product.about.cuisine[1].name} */}
+                   </a>
+                   <a
+                     href="/mumbai-restaurants/navi-mumbai/rabale/american-cuisine"
+                     className="text-ltgrey"
+                   >
+                     {/* {product.about.cuisine[2].name} */}
+                </a>
+                 </div>
+                 <div className="restnt-name">
+                     <a
+                       href="/mumbai-restaurants/navi-mumbai/rabale"
+                       className="text-ltgrey"
+                     >
+                       {place}|{" "}
+                     </a>
+                     <a href="/mumbai-restaurants" className="text-ltgrey">
+                       {district} |{" "}
+                     </a>
+                     <a
+                       href=""
+                       className="text-blue font-bold"
+                       item-clicked="direction"
+                       data-w-onclick="restroNavClicked|w1"
+                     >
+                       <img src="https://im1.dineout.co.in/images/uploads/mailer/2019/Jul/11/path.png" />{" "}
                       Get Direction
                     </a>
                   </div>
                   <div className="timing">
                     <a href="" className="dropdown-toggle" id="dropdownMenu1">
-                      <span class="text-blue font-bold"> (Open Now)</span>
-                      <i class="do do-angle-down"></i>
-                      <div class="opening-hrs-wrap">
-                        <div class="time-wrap">
-                          <div class="all-timings">
+                      <span className="text-blue font-bold"> (Open Now)</span>
+                      <i className="do do-angle-down"></i>
+                      <div className="opening-hrs-wrap">
+                        <div className="time-wrap">
+                          <div className="all-timings">
                             <div
-                              class="tooltip bottom"
+                              className="tooltip bottom"
                               role="menu"
                               aria-labelledby="dropdownMenu1"
                             >
-                              <div class="tooltip-arrow"></div>
-                              <div class="tooltip-inner"></div>
+                              <div className="tooltip-arrow"></div>
+                              <div className="tooltip-inner"></div>
                             </div>
                           </div>
                         </div>
@@ -210,21 +149,19 @@ export const RestraurantDetail = () => {
                     </a>
                   </div>
                 </div>
-                <div class="rdp-restnt-rating">
+                <div className="rdp-restnt-rating">
                   <div
                     scroll-hash="#review-section"
                     data-w-onclick="scrollToHash|w1"
-                  >
-                    <div class="cursor rest-rating rating-5">4.6</div>
-                  </div>
-                </div>
+                  >                     <div className="cursor rest-rating rating-5">4.6</div>
+                  </div>                 </div>
               </section>
-            </div>
+    </Item>
+  </Grid>
+ 
+ 
+ 
+</Grid>
 
-            {/*   form   */}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+  )
+}

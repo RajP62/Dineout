@@ -16,6 +16,7 @@ import { Signin } from '../signin';
 import "../BookNewTable/Booktable.css"
 import { Link } from 'react-router-dom';
 import { ClickedContext } from '../../Context/clickedItem';
+import { Carousel } from '../Carousel';
 
 export const HomePage = () => {
     const [data, setData] = useState([]);
@@ -24,10 +25,10 @@ export const HomePage = () => {
     const {setClickedId} = useContext(ClickedContext);
 
     const getData = async()=>{
-        let data = await fetch("https://backend-dineout.herokuapp.com/restaurants");
+        let data = await fetch("http://localhost:4000/restaurants");
         let realData = await data.json();
         setData(realData.data);
-        let featured = await fetch("https://backend-dineout.herokuapp.com/restaurants/featured");
+        let featured = await fetch("http://localhost:4000/restaurants/featured");
         let featuredReal = await featured.json();
         setFeaturedData(featuredReal.data);
     }
@@ -53,37 +54,9 @@ export const HomePage = () => {
         </Box>
         <Box style={{textAlign:"start", margin:"7%"}}>
             <h1>Restaurants Near You</h1>
-        <Box sx={{display:"grid", gridTemplateColumns:"21% 21% 21% 21%", gap:"5%"}}>
-        {data.map((mainData, ind)=>ind<=3? <>
-            <Link to={`/detail`}>
-                    <Card className="main-card" sx={{ maxWidth: 280 }} key={mainData.id} onClick={()=>handleClick(mainData._id)}>
-                      <CardMedia
-                        component="img"
-                        alt={mainData.altImages}
-                        className="card-image"
-                        image={mainData.imagePrimary}
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h6" component="div">
-                          {mainData.title}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          <Box className="card-location"> {mainData.place},{mainData.district},{mainData.state}</Box>
-                          <div className="card-location">
-                            {mainData.avgcost} for 2 (approx)|{mainData.about.bestselling}
-                          </div>
-                        </Typography>
-                        <div className="card-btn">Dineout</div>
-                      </CardContent>
-                      <CardActions className="coupan">
-                        <div className="coupan-offer"><img src="https://im1.dineout.co.in/images/uploads/misc/2020/Sep/21/free_offer.png" className="coupan-image" alt="coupan" /></div>
-                        <div className="coupan-offer"><h5 className="coupan-text">15% Off The Total Bill</h5></div>
-                        <div className="coupan-offer"><Button variant="contained" className="coupan-button" size="small"><h6 className="coupan-text1">Avail Now</h6></Button></div>
-                      </CardActions>
-                    </Card>
-                    </Link>
-        </> : null
-        )}
+        <Box sx={{display:"grid", gridTemplateColumns:"100%", gap:"5%"}}>
+          {<Carousel data = {data} handleClick={handleClick}></Carousel>}
+      
         </Box>
 
         </Box>
@@ -92,37 +65,9 @@ export const HomePage = () => {
 
         <Box style={{textAlign:"start", margin:"7%"}}>
         <h1>Featured Restaurants</h1>
-        <Box sx={{display:"grid", gridTemplateColumns:"21% 21% 21% 21%", gap:"5%"}}>
-        {featuredData.map((mainData, ind)=>ind<=3? <>
-            <Link to={`/detail`}>
-                    <Card className="main-card" sx={{ maxWidth: 280 }} key={mainData.id} onClick={()=>handleClick(mainData._id)}>
-                      <CardMedia
-                        component="img"
-                        alt={mainData.altImages}
-                        className="card-image"
-                        image={mainData.imagePrimary}
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h6" component="div">
-                          {mainData.title}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          <Box className="card-location"> {mainData.place},{mainData.district},{mainData.state}</Box>
-                          <div className="card-location">
-                            {mainData.avgcost} for 2 (approx)|{mainData.about.bestselling}
-                          </div>
-                        </Typography>
-                        <div className="card-btn">Dineout</div>
-                      </CardContent>
-                      <CardActions className="coupan">
-                        <div className="coupan-offer"><img src="https://im1.dineout.co.in/images/uploads/misc/2020/Sep/21/free_offer.png" className="coupan-image" alt="coupan" /></div>
-                        <div className="coupan-offer"><h5 className="coupan-text">15% Off The Total Bill</h5></div>
-                        <div className="coupan-offer"><Button variant="contained" className="coupan-button" size="small"><h6 className="coupan-text1">Avail Now</h6></Button></div>
-                      </CardActions>
-                    </Card>
-                    </Link>
-        </> : null
-        )}
+        <Box sx={{display:"grid", gridTemplateColumns:"100%", gap:"5%"}}>
+        {<Carousel data = {data} handleClick={handleClick}></Carousel>}
+       
         </Box>
 
         </Box>

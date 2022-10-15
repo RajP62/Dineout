@@ -1,8 +1,9 @@
 .MenuRestaurant_Container {
-    width: 100%;
+    width: 63%;
     background-color: #fff;
-    display: inline-block;
-    vertical-align: left;
+    padding: 10px;
+    /* display: inline-block;
+    vertical-align: left; */
     margin-bottom: 10px;
   }
   

@@ -10,6 +10,7 @@ const verifyToken = (token)=>{
 }
 
 module.exports = async (req, res, next)=>{
+   
     const bearerToken = req.cookies?.access;
     let user;
     try{

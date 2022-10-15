@@ -2,7 +2,9 @@
     background: #fff;
     border-radius: 4px;
     padding: 12px;
-    margin-bottom: 12px;
+    width: 62.5%;
+    margin-top:10px;
+    margin-bottom: 10px;
     position: sticky;
     top: 0px;
     overflow: hidden;
@@ -22,7 +24,7 @@ ul.rdp-detailmenu li {
 }
 ul.rdp-detailmenu li a {
     color: #202020;
-    padding: 10px 30px 8px;
+    /* padding: 10px 30px 8px; */
     display: inline-block;
     font-weight: bold;
     border-bottom: 5px solid #fff;

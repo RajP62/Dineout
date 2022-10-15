@@ -1,8 +1,16 @@
+
+
+
 .container-whole{
   padding: 1rem;
   margin: auto;
+  height: 400px;
+  margin:-50px;
+
 
 }
+
+
 
 .contentCntr {
   padding: 20px;
@@ -49,8 +57,9 @@
 .sidebar-book-section {
   position: fixed;
   overflow: auto;
+  margin-top: 45px;
   right: 46.6667px;
-  background-color: #F4F4F4;
+  background-color: #fff;
   top: 4rem;
   width: 26%;
   height: 400px;
@@ -61,7 +70,7 @@
 }
 
 .slick-list img {
-  width: 100%;
+ 
   border-radius: 4px;
 }
 .rdp-section {
@@ -74,10 +83,12 @@
   color: #696969;
   width: 100%;
   text-align: left;
+  margin: auto;
 }
 .restnt-details_info h1 {
   font-size: 22px;
   color: #202020;
+
 }
 .restnt-details_info .restnt-cost {
   padding: 7px 0;

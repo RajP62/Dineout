@@ -25,11 +25,12 @@ dispatch({type:SIGNUP})
     <>
     <div className="box">
       <div>
-      <img
+      <Link to="/">  <img
                 style={{ width: "110px" }}
                 src="https://st1.dineout-cdn.co.in/images/uploads/misc/2019/Jul/25/website-logo.png"
                 alt="logo"
-              />
+              /></Link>
+    
       </div>
 <div>
   <Signin/>
@@ -38,7 +39,7 @@ dispatch({type:SIGNUP})
 <MultipleSelectPlaceholder/>
 </div>
 <div>
-<input class="search" placeholder="Search for Restaurants, Cuisines ,Location..." type="text"/>
+<input className="search" placeholder="Search for Restaurants, Cuisines ,Location..." type="text"/>
 <Button sx={{backgroundColor:" rgb(252, 97, 97)",width:"100px",textTransform:"lowercase",fontWeight:"700"}}  variant="contained" size="small" color="error">
 Search
 </Button>
@@ -50,7 +51,7 @@ Signup
 </Button>
 </div>
     </div>
-      <div className="links">
+      <div className="links" >
       <div>
         <Link to="/">Home</Link>
       </div>
@@ -67,6 +68,7 @@ Signup
         <Link to="/success">Booking Details</Link>
       </div>
     </div>
+  
     </>
   )
 }

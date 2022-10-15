@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, {  useEffect, useState } from "react";
 import "./Booktable.css";
 import Grid from '@mui/material/Grid'
 
@@ -14,19 +14,58 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import { useDispatch } from "react-redux";
+import { SET_FILTER } from "../../Store/actiontype/auth.action.type";
 
 const FilterData = () => {
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [filter, setFilter] = useState(
+      {
+        dishes:[],
+        tags:[],
+        features:[],
+        facilities:[],
+        cuisines:[]
+      }
+    )
+let dispatch=useDispatch()
+    let handlechange=(e)=>{
+    
+let {name,value}=e.target
+console.log(name,value)
 
-    const [filter, setFilter] = useState([])
+
+  //do something
+if(e.target.checked){
+  setFilter({...filter,[name]:[...filter[name],value]})
+}else{
+
+  let filteredarr = filter[name].filter((e)=>e!=value)
+  setFilter({...filter,[name]:[...filteredarr]})
+}
+  
+
+
+
+
+  
+  
+  
+}
+
+useEffect(()=>{
+  
+  dispatch({type:SET_FILTER,payload:filter})
+    },[filter])
+
      const cuisines = async () => {
     const response = await fetch('https://backend-dineout.herokuapp.com/restaurants', { mode: "cors" });
     const data = await response.json()
-    let filtered = data.filter(el=>el.about.quickFilters.includes("Pure Veg")? true : false);
-    setFilter(filtered);
+    // let filtered = data.filter(el=>el.about.quickFilters.includes("Pure Veg")? true  onChange={handlechange}: false);
+    // setFilter(filtered);
   }
 
     return(
@@ -42,48 +81,14 @@ const FilterData = () => {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              <TextField className="search-bar" id="outlined-basic" label="Search" variant="outlined" />
+              {/* <TextField className="search-bar" id="outlined-basic" label="Search" variant="outlined" /> */}
               <FormGroup>
-                <FormControlLabel control={<Checkbox />} label="Dineout Pay" />
-                <FormControlLabel control={<Checkbox />} label="Pure Veg" />
-                <FormControlLabel control={<Checkbox />} label="5 Star" />
-                <FormControlLabel control={<Checkbox />} label="Buffet" />
-                <Button sx={{}} onClick={handleOpen}>Show More(4)</Button>
-                <Modal
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Box className="modal">
-
-                    <sapn>
-                      <Typography className="modal-content " sx={{ fontSize: 18, fontWeight: 555, color: "GrayText" }}>Quick Filters</Typography>
-                    </sapn>
-                    <div>
-                      <TextField className="modal-content" id="outlined-basic" label="Search" variant="outlined" />
-                    </div>
-                    <Typography>
-                      <FormGroup>
-
-                        <div className="modal-content">
-
-                          <FormControlLabel control={<Checkbox />} label="North Indian" />
-                          <FormControlLabel control={<Checkbox />} label="Chinese" />
-                          <FormControlLabel control={<Checkbox />} label="Fast Food" />
-                          <FormControlLabel control={<Checkbox />} label="Desserts" />
-                          <FormControlLabel control={<Checkbox />} label="5 Star" />
-                          <FormControlLabel control={<Checkbox />} label="Happy Hour" />
-                        </div>
-                        <div className="modal-content">
-                          <FormControlLabel control={<Checkbox />} label="Pure Veg" />
-                          <FormControlLabel control={<Checkbox />} label="Dessert" />
-                        </div>
-                      </FormGroup>
-                    </Typography>
-
-                  </Box>
-                </Modal>
+         
+                <FormControlLabel name = "dishes" onChange={handlechange} control={<Checkbox />} label="Pure Veg" value="pure_veg" />
+                <FormControlLabel name = "dishes" onChange={handlechange} control={<Checkbox />} label="5 Star" value="5_star" />
+                <FormControlLabel name = "dishes"  onChange={handlechange}control={<Checkbox />} label="Fast Food" value="fast_food" />
+               
+             
               </FormGroup>
             </Typography>
           </AccordionDetails>
@@ -99,44 +104,13 @@ const FilterData = () => {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              <TextField className="search-bar" id="outlined-basic" label="Search" variant="outlined" />
+             
               <FormGroup>
-                <FormControlLabel control={<Checkbox />} label="North Indian" />
-                <FormControlLabel control={<Checkbox />} label="Chinese" />
-                <FormControlLabel control={<Checkbox />} label="Fast Food" />
-                <FormControlLabel control={<Checkbox />} label="Desserts" />
-                <Button sx={{ marginLeft: -15 }} onClick={handleOpen}>Show More(12)</Button>
-                <Modal
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Box className="modal">
-
-
-                    <Typography sx={{ fontSize: 18, fontWeight: 555, color: "GrayText" }}>Quick Filters</Typography>
-
-                    <Typography>
-                      <TextField className="search-bar" id="outlined-basic" label="Search" variant="outlined" />
-                      <FormGroup>
-                        <sapn className="modal-content">
-                          <FormControlLabel control={<Checkbox />} label="North Indian" />
-                          <FormControlLabel control={<Checkbox />} label="Chinese" />
-                          <FormControlLabel control={<Checkbox />} label="Fast Food" />
-                          <FormControlLabel control={<Checkbox />} label="Desserts" />
-                        </sapn>
-                        <div className="modal-content">
-                          <FormControlLabel control={<Checkbox />} label="5 Star" />
-                          <FormControlLabel control={<Checkbox />} label="Happy Hour" />
-                          <FormControlLabel control={<Checkbox />} label="Pure Veg" />
-                          <FormControlLabel control={<Checkbox />} label="Dessert" />
-                        </div>
-                      </FormGroup>
-                    </Typography>
-
-                  </Box>
-                </Modal>
+                <FormControlLabel control={<Checkbox />}  onChange={handlechange} label="North Indian" name = "cuisines" value="north_indian" />
+                <FormControlLabel control={<Checkbox />} onChange={handlechange} label="Chinese" name = "cuisines" value="chinese" />
+                <FormControlLabel control={<Checkbox />} onChange={handlechange} label="Fast Food" name = "cuisines" value="fast_food" />
+                <FormControlLabel control={<Checkbox />} onChange={handlechange} label="Desserts" name = "cuisines" value="desserts" />
+           
               </FormGroup>
             </Typography>
           </AccordionDetails>
@@ -151,12 +125,12 @@ const FilterData = () => {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              <TextField className="search-bar" id="outlined-basic" label="Search" variant="outlined" />
+             
               <FormGroup>
-                <FormControlLabel control={<Checkbox />} label="Casual Dining" />
-                <FormControlLabel control={<Checkbox />} label="Dineout Pay" />
-                <FormControlLabel control={<Checkbox />} label="Breakfast" />
-                <FormControlLabel control={<Checkbox />} label="Pure Veg" />
+                <FormControlLabel control={<Checkbox />} label="Casual Dining" name="tags" value = "Casual Dining" onChange={handlechange} />
+                <FormControlLabel control={<Checkbox />} label="Dineout Pay" name="tags" value = "Dineout Pay" onChange={handlechange} />
+                <FormControlLabel control={<Checkbox />} label="Breakfast" name="tags" value = "Breakfast" onChange={handlechange} />
+                <FormControlLabel control={<Checkbox />} label="Night Life" name="tags" value = "Night Life" onChange={handlechange} />
               </FormGroup>
             </Typography>
           </AccordionDetails>
@@ -171,12 +145,12 @@ const FilterData = () => {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              <TextField className="search-bar" id="outlined-basic" label="Search" variant="outlined" />
+             
               <FormGroup>
-                <FormControlLabel control={<Checkbox />} label="Card Accepted" />
-                <FormControlLabel control={<Checkbox />} label="Home Delivery" />
-                <FormControlLabel control={<Checkbox />} label="Air Conditioned" />
-                <FormControlLabel control={<Checkbox />} label="Wallet Accepted" />
+                <FormControlLabel control={<Checkbox />} onChange={handlechange} name="features" value="Card Accepted" label="Card Accepted" />
+                <FormControlLabel control={<Checkbox />} onChange={handlechange} name="features" value="Home Delivery" label="Home Delivery" />
+                <FormControlLabel control={<Checkbox />} onChange={handlechange} name="features" value="Air Conditioned" label="Air Conditioned" />
+                <FormControlLabel control={<Checkbox />} onChange={handlechange} name="features" value="Wallet Accepted" label="Wallet Accepted" />
               </FormGroup>
             </Typography>
           </AccordionDetails>
@@ -187,14 +161,15 @@ const FilterData = () => {
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography sx={{ fontSize: 18, fontWeight: 555, color: "GrayText" }}>Dineout Passport</Typography>
+            <Typography sx={{ fontSize: 18, fontWeight: 555, color: "GrayText" }}>Facilities</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
               <FormGroup>
-                <FormControlLabel control={<Checkbox />} label="30% Dineout Passport" />
-                <FormControlLabel control={<Checkbox />} label="Dp Food Bill" />
-                <FormControlLabel control={<Checkbox />} label="1 Plus 1 Buffet" />
+                <FormControlLabel onChange={handlechange} name="facilities" value="Outdoor Seating" control={<Checkbox />} label="Outdoor Seating" />
+                <FormControlLabel onChange={handlechange} name="facilities" value="Take Away" control={<Checkbox />} label="Take Away" />
+                <FormControlLabel onChange={handlechange} name="facilities" value="DJ" control={<Checkbox />} label="DJ" />
+                <FormControlLabel onChange={handlechange} name="facilities" value="Smoking Area" control={<Checkbox />} label="Smoking Area" />
               </FormGroup>
             </Typography>
           </AccordionDetails>

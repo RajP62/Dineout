@@ -208,7 +208,7 @@ e.preventDefault()
       payload= JSON.stringify(payload)
       console.log(payload,payload)
 
-      fetch("https://backend-dineout.herokuapp.com/users/add",{
+      fetch("http://localhost:4000/users/add",{
           method:"POST",
           body:(payload),
         

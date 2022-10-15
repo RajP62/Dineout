@@ -13,9 +13,9 @@ const reviewCont = require("./controllers/review.controller");
 const stateCont = require("./controllers/state.controller");
 const typeCont = require("./controllers/type.controller");
 const userCont = require("./controllers/user.controller");
-const rzpCont = require("./controllers/razorpay.controller");
+// const rzpCont = require("./controllers/razorpay.controller");
 
-app.use("/razorpay", rzpCont);
+// app.use("/razorpay", rzpCont);
 
 app.use("/restaurants", restaurantCont);
 
