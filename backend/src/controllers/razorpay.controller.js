@@ -15,9 +15,7 @@ router.post("", async (req, res)=>{
     }
 
     try{
-        console.log("entered line 1");
         const response = await razorpay.orders.create(options);
-        console.log('entered line 2');
         const {id, currency, amount} = response;
         return res.json({
             id,

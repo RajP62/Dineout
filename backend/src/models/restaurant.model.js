@@ -7,22 +7,21 @@ const restaurantSchema = new Schema({
     state: {type:String, required:true},
     district: {type:String,  required:true},
     place: {type:String, required:true},
-    featured: {type: Boolean, required: true},
     reviews: [{type:Schema.Types.ObjectId, ref:"review"}],
     contact:{
-        callus:{type:String, required: true},
-        callrestaurent: {type:String, required:true}
+        callus:{type:String},
+        callrestaurent: {type:String}
     },
     fssai: {type:String, required: true},
     avgcost:{type:String, required: true},
     about:{
-        cuisine:[{type:Schema.Types.ObjectId, ref:"cuisine" ,required:true}],
-        type:[{type:Schema.Types.ObjectId, ref:"type", required: true}],
-        quickFilters: [{type:Schema.Types.ObjectId, ref:"quickfilter" ,required: true}],
-        bestselling: [{type:String, required: true}],
-        facilities: [{type:Schema.Types.ObjectId, ref:"facility", required: true}],
+        cuisine:{type:Schema.Types.Array},
+        type:{type:Schema.Types.Array},
+        dishes: {type:Schema.Types.Array},
+        bestselling: {type:Schema.Types.Array},
+        facilities: {type:Schema.Types.Array},
         openAt:{type:Number, required:true},
-        closeAt: {type:Number, required: true},
+        closeAt: {type:Number, required:true},
     },
 
 

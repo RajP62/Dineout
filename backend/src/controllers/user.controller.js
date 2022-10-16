@@ -4,7 +4,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 const crypto = require("node:crypto");  
-
+    
 router.post("/add", async(req,res)=>{
     try{
         const {firstName, lastName, email, password, role} = req.body;
@@ -28,6 +28,7 @@ router.post("/login", async(req, res)=>{
         const {email, password} = req.body;
         const hash = crypto.pbkdf2Sync(password, process.env.CRYPTO_SALT, 60, 60, "sha256").toString("hex");
         let user = await User.find({email});
+        console.log("entered");
         if(user.length===0){
             return res.status(401).send({error: true, message: "User doesn't exist with such email"});
         }
@@ -35,15 +36,14 @@ router.post("/login", async(req, res)=>{
         if(user[0].password!==hash){
             return res.status(401).send({error: true, message:"Invalid password"});
         }
-
         const access_jwt = jwt.sign({firstName, lastName, email:mail, role}, process.env.JWT_KEY, {expiresIn:"10m"});
 
         const refresh_jwt = jwt.sign({firstName,lastName, email:mail, role}, process.env.REFRESH_KEY, {expiresIn:"7d"});
 
-        res.cookie('access', access_jwt, {httpOnly: true, maxAge:600000});
-        res.cookie('refresh', refresh_jwt, {httpOnly: true, maxAge: 604800000});
+        res.cookie('access', access_jwt, {sameSite:"none", secure:true, expires: new Date(Date.now() + 600000+864000000)});
+        res.cookie('refresh', refresh_jwt, {sameSite:"none", secure:true, expires: new Date(Date.now()+ 3600000+864000000)});
 
-        res.send({error: false, message: "User successfully logged in"});
+        return res.send({error: false, message: {role}});
     }
     catch(e){
         return res.send({error:true, message: e.message});

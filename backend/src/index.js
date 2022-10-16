@@ -1,25 +1,25 @@
-require("dotenv").config();
 const express = require("express");
 const app = express();
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
+const fileParser = require("express-fileupload");
 app.use(express.json());
 app.use(cookieParser());
+app.use(fileParser());
+
+// var corsOptions = {
+//     origin: 'https://singular-wisp-16a48c.netlify.app/',
+//     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://singular-wisp-16a48c.netlify.app/');
+    res.header("Access-Control-Allow-Private-Network", true);
+    res.header("InsecurePrivateNetworkRequestsAllowed", true);
+    next();
+  });
 
 const restaurantCont = require("./controllers/restaurant.controller");
-const cuisinecont = require("./controllers/cuisine.controller");
-const facilityCont = require("./controllers/facility.controller");
-const quickFilterCont = require("./controllers/quickfilter.controller");
-const reviewCont = require("./controllers/review.controller");
-const stateCont = require("./controllers/state.controller");
-const typeCont = require("./controllers/type.controller");
 const userCont = require("./controllers/user.controller");
-const rzpCont = require("./controllers/razorpay.controller");
-
-app.use("/razorpay", rzpCont);
-
 app.use("/restaurants", restaurantCont);
-
-app.use("/cuisine", cuisinecont);
 
 app.use("/users", userCont);
 

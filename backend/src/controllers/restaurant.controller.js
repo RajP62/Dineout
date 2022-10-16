@@ -3,12 +3,20 @@ const router = express.Router();
 const Restaurants = require("../models/restaurant.model");
 const authenticate = require("../middlewares/authenticate");
 const authorise = require("../middlewares/authorization");
+const path= require("path");
+const splitByComma = (str)=>{
+    let arr =  str.trim().split(",");
+    for(let i=0; i<arr.length; i++){
+        arr[i] = arr[i].trim();
+    }
+    return arr;
+}
 
-router.get("", authenticate, authorise(['user', 'admin']), async(req,res)=>{
+router.get("", async(req,res)=>{
     try{
-        const page = req.query?.page || 1;
-        const limit = req.query?.limit || 10;
-        let quick_filters = req.query?.quick_filters || "";
+        const page = +req.query?.page || 1;
+        const limit= +req.query?.limit || 10;
+        let dishes = req.query?.dishes || "";
         let cuisines = req.query?.cuisines || "";
         let tags = req.query?.tags || "";
         let features = req.query?.features || "";
@@ -17,17 +25,16 @@ router.get("", authenticate, authorise(['user', 'admin']), async(req,res)=>{
         let facilities = req.query?.facilities || "";
         let bestSelling = req.query?.bestselling || "";
         const skip = (page-1) * limit;
-        quick_filters = quick_filters? quick_filters.split("&") : [];
+        dishes = dishes? dishes.split("&") : [];
         cuisines = cuisines? cuisines.split("&") : [];
         tags = tags? tags.split("&") : [];
         features = features? features.split("&") : [];
         dineout_passport = dineout_passport? dineout_passport.split("&") : [];
         facilities = facilities? facilities.split("&") : [];
         bestSelling = bestSelling? bestSelling.split("&") : [];
-        sort = sort? sort==='price_asc'? {'avgcost' : 1} : sort==='price_desc'? {'avgcost': -1} : {sort : 1} : {sort : 1};
+        sort = sort? sort==='price_asc'? {'avgcost' : 1} : sort==='price_desc'? {'avgcost': -1} : sort==='popularity'? {"featured": -1} : {sort : 1} : {sort : 1};
 
-
-        let data = await Restaurants.aggregate([{ $lookup: { from: "cuisines", localField: "cuisine", foreignField: "ID", as: "about.cuisine" } }, { $lookup: { from: "types", localField: "type", foreignField: "ID", as: "about.type" } }, { $lookup: { from: "quickfilters", localField: "quickFilters", foreignField: "ID", as: "about.quickFilters" } }, { $lookup: { from: "facilities", localField: "facilities", foreignField: "ID", as: "about.facilities" } }, { $unset: ["about.facilities._id", "about.quickFilters._id", "about.type._id", "about.cuisine._id"] }, { $project: { "_id": 1, "imagePrimary": 1, "altImages": 1, "title": 1, "state": 1, "district": 1, "place": 1, "featured": 1, "contact": 1, "fssai": 1, "avgcost": 1, "about.cuisine": "$about.cuisine.name", "about.type": "$about.type.name", "about.quickFilters": "$about.quickFilters.name", "about.facilities": "$about.facilities.facilityName", "about.bestselling":1}}, {$match:{$and: [{$expr:{$setIsSubset:[bestSelling, "$about.bestselling"]}}, {$expr:{$setIsSubset:[facilities, "$about.facilities"]}}, {$expr:{$setIsSubset:[quick_filters, "$about.quickFilters"]}}, {$expr:{$setIsSubset:[['Andaz Delhi', '5 Star'], "$about.type"]}}, {$expr:{$setIsSubset:[cuisines, "$about.cuisine"]}}]}}, {$sort : sort}]).skip(skip).limit(limit);
+        let data = await Restaurants.aggregate([{$match:{$and: [{$expr:{$setIsSubset:[bestSelling, "$about.bestselling"]}}, {$expr:{$setIsSubset:[facilities, "$about.facilities"]}}, {$expr:{$setIsSubset:[dishes, "$about.quickFilters"]}}, {$expr:{$setIsSubset:[tags, "$about.type"]}}, {$expr:{$setIsSubset:[cuisines, "$about.cuisine"]}}]}}, {$sort:sort}]).skip(skip).limit(limit);
         const totalPages = Math.ceil(data.length/limit);
 
         return res.status(200).json({data, totalPages});
@@ -68,19 +75,46 @@ router.get("/featured", authenticate, authorise(['user', 'admin']), async(req,re
     }
 });
 
-router.post("/add", authenticate, authorise(['restaurant', 'admin']), async(req, res)=>{
+router.post("/add", authenticate, authorise(['user']), async(req, res)=>{
     try{
-        const restaurant = req.body;
-        const saveRest = new Restaurants(restaurant);
-        saveRest.save().then(()=>{
-            return res.send({acknowledged: true, message: "Restaurant added successfully"});
-        })
-        .catch(e=>{
+        if(!req.files.imagePrimary || !req.files.altImages){
+            return res.send({error: true, message:"Please send the valid image"});
+        }
+        const imagePrimary= req.files?.imagePrimary;
+        const altImages = req.files?.altImages;
+        const imagePrimaryPath = path.join(__dirname, "../..", "files", imagePrimary.name);
+        const altImgPath = path.join(__dirname, `../..`, "files", altImages.name);
+        imagePrimary.mv(imagePrimaryPath, function(err){
+            if(err){
+                console.log("error in image primary", err.message);
+                return res.send({error: true, message: err.message});
+            }
+        });
+        altImages.mv(altImgPath, function(err){
+            if(err){
+                console.log("error in alt Image", err.message);
+                return res.send({error: true, message: err.message});
+            }
+        });
+        let {title, state, district, place, featured, contact, fssai, avgcost,cuisine, type, bestselling, facilities, quickFilters, openAt, closeAt} = req.body;
+        cuisine = splitByComma(cuisine);
+        type = splitByComma(type);
+        bestselling = splitByComma(bestselling);
+        facilities = splitByComma(facilities);
+        quickFilters = splitByComma(quickFilters);
+        openAt = +openAt;
+        closeAt = +closeAt;
+        const finalBody = {imagePrimary: imagePrimaryPath, altImages:[altImgPath], title, state, district, place, featured, contact, fssai, avgcost, about:{cuisine, type, bestselling, facilities, quickFilters, openAt, closeAt}};
+        console.log("finalBody", finalBody);
+        const restaurant = new Restaurants(finalBody);
+        restaurant.save().then(()=>{
+            return res.send({error: false, message: "Restaurant Added Successfully"});
+        }).catch(e=>{
             return res.send({error: true, message: e.message});
-        })
+        });
     }
     catch(e){
-        return re.send({error: true, message: "Something went wrong"});
+        return res.send({error: true, message: e.message});
     }
 });
 module.exports = router;
