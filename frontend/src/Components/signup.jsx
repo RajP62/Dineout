@@ -202,7 +202,8 @@ e.preventDefault()
           firstName:form.firstName,
   lastName:form.lastName,
   email:form.email,
-  password:form.password
+  password:form.password,
+  role:form.role
  
       }
       payload= JSON.stringify(payload)
@@ -281,6 +282,15 @@ let dispatch = useDispatch()
             <p>Last name</p>
            
               <input style={inputstyles} onChange={handlechange}  name="lastName" placeholder="Enter Your Last  Name" type="text" />
+
+              <p>Role</p>
+
+              <select defaultValue={"user"} name="role" style={inputstyles} onChange={handlechange} >
+              <option value = "user">user</option>
+<option value="restaurant">restaurant</option>
+
+              </select>
+
          
             <p>Email</p>
           

@@ -11,6 +11,7 @@ import Model from "react-modal";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SIGNIN } from "../Store/actiontype/auth.action.type";
+import { useNavigate } from "react-router";
 
 const Style = styled.div`
   /* height: 455px; */
@@ -199,6 +200,8 @@ export const Signin = () => {
   let emailref=useRef("")
   let passwordref= useRef("")
 
+let navigate = useNavigate()
+
 
   // Inputs
 
@@ -217,7 +220,16 @@ fetch("http://localhost:4000/users/login",{
     "Content-Type":"application/json"
   },
   body:JSON.stringify(payload)
-}).then((res)=>res.json()).then((res)=>{console.log(res,"res")})
+}).then((res)=>res.json()).then((res)=>{
+  
+  console.log("res",res)
+if(res.message.role=="restaurant"){
+  navigate("/restaurant/dashboard")
+}
+
+
+dispatch({type:SIGNIN})
+})
 
 
 

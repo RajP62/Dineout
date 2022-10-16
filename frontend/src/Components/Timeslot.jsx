@@ -163,62 +163,62 @@ let handleGuest = (num)=>{
         </div>
         {Status === "breakfast" ? (
           <div className="show__times--parent">
-            <button onClick={() => handleBookTime("9:00 AM")}>
+            <button className={BookTime=="9:00 AM"?"focused__zone":null}  onClick={() => handleBookTime("9:00 AM")}>
               <p>9:00 AM</p>
             </button>
-            <button onClick={() => handleBookTime("9:15 AM")}>
+            <button className={BookTime=="9:15 AM"?"focused__zone":null} onClick={() => handleBookTime("9:15 AM")}>
               <p>9:15 AM</p>
             </button>
-            <button onClick={() => handleBookTime("9:30 AM")}>
+            <button className={BookTime=="9:30 AM"?"focused__zone":null}  onClick={() => handleBookTime("9:30 AM")}>
               <p>9:30 AM</p>
             </button>
-            <button onClick={() => handleBookTime("9:45 AM")}>
+            <button className={BookTime=="9:45 AM"?"focused__zone":null}  onClick={() => handleBookTime("9:45 AM")}>
               <p>9:45 AM</p>
             </button>
-            <button onClick={() => handleBookTime("10:00 AM")}>
+            <button className={BookTime=="10:00 AM"?"focused__zone":null}  onClick={() => handleBookTime("10:00 AM")}>
               <p>10:00 AM</p>
             </button>
-            <button onClick={() => handleBookTime("10:15 AM")}>
+            <button className={BookTime=="10:15 AM"?"focused__zone":null}  onClick={() => handleBookTime("10:15 AM")}>
               <p>10:15 AM</p>
             </button>
-            <button onClick={() => handleBookTime("10:30 AM")}>
+            <button className={BookTime=="10:30 AM"?"focused__zone":null}  onClick={() => handleBookTime("10:30 AM")}>
               <p>10:30 AM</p>
             </button>
-            <button onClick={() => handleBookTime("10:45 AM")}>
+            <button className={BookTime=="10:45 AM"?"focused__zone":null}  onClick={() => handleBookTime("10:45 AM")}>
               <p>10:45 AM</p>
             </button>
-            <button onClick={() => handleBookTime("11:00 AM")}>
+            <button className={BookTime=="11:00 AM"?"focused__zone":null}  onClick={() => handleBookTime("11:00 AM")}>
               <p>11:00 AM</p>
             </button>
           </div>
         ) : Status === "lunch" ? (
           <div className="show__times--parent">
-            <button onClick={() => handleBookTime("1:00 PM")}>
+            <button className={BookTime=="1:00 PM"?"focused__zone":null} onClick={() => handleBookTime("1:00 PM")}>
               <p>1:00 PM</p>
             </button>
-            <button onClick={() => handleBookTime("1:15 PM")}>
+            <button className={BookTime=="1:15 PM"?"focused__zone":null} onClick={() => handleBookTime("1:15 PM")}>
               
               <p>1:15 PM</p>
             </button>
-            <button onClick={() => handleBookTime("1:30 PM")}>
+            <button className={BookTime=="1:30 PM"?"focused__zone":null} onClick={() => handleBookTime("1:30 PM")}>
               <p>1:30 PM</p>
             </button>
-            <button onClick={() => handleBookTime("1:45 PM")}>
+            <button className={BookTime=="1:45 PM"?"focused__zone":null} onClick={() => handleBookTime("1:45 PM")}>
               <p>1:45 PM</p>
             </button>
-            <button onClick={() => handleBookTime("2:00 PM")}>
+            <button className={BookTime=="2:00 PM"?"focused__zone":null} onClick={() => handleBookTime("2:00 PM")}>
               <p>2:00 PM</p>
             </button>
-            <button onClick={() => handleBookTime("2:15 PM")}>
+            <button className={BookTime=="2:15 PM"?"focused__zone":null} onClick={() => handleBookTime("2:15 PM")}>
               <p>2:15 PM</p>
             </button>
-            <button onClick={() => handleBookTime("3:30 PM")}>
+            <button className={BookTime=="3:30 PM"?"focused__zone":null} onClick={() => handleBookTime("3:30 PM")}>
               <p>3:30 PM</p>
             </button>
-            <button onClick={() => handleBookTime("3:45 PM")}>
+            <button className={BookTime=="3:45 PM"?"focused__zone":null} onClick={() => handleBookTime("3:45 PM")}>
               <p>3:45 PM</p>
             </button>
-            <button onClick={() => handleBookTime("4:00 PM")}>
+            <button className={BookTime=="4:00 PM"?"focused__zone":null} onClick={() => handleBookTime("4:00 PM")}>
               <p>4:00 PM</p>
             </button>
           </div>
@@ -264,7 +264,7 @@ let handleGuest = (num)=>{
           <div></div>
         </div>
       </div>
-{ BookTime==="9:30 AM"?(   <div class="noOffer__parent">
+{ BookTime=="9:00 AM"?(   <div class="noOffer__parent">
    <div>
      <img
        src="	https://dineout-clone.vercel.app/static/media/No%20offer.ee675c59.svg"

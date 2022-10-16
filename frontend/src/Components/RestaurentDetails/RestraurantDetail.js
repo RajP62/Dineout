@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import "./RestraurantDetail.css";
-
+import { Dots } from 'loading-animations-react';
 
 import Grid from '@mui/material/Grid';
 // import DinePage from "./DinePage";
@@ -46,14 +46,16 @@ export const RestraurantDetail = () => {
 
   const {clickedId} = useContext(ClickedContext);
     console.log(clickedId,"id")
-  
+  let [loading,setloading]=useState(false)
     const [product, setProduct] = useState([]);
     const getProduct = async () => {
+      setloading(true)
       const response = await fetch(
         `http://localhost:4000/restaurants/id/${clickedId}`,
         { mode: "cors" }
       );
       const data = await response.json();
+      setloading(false)
       console.log(data,"response")
   
       setProduct(data.data);
@@ -82,7 +84,9 @@ console.log(restaurantDetails,"restaurant")
   <Grid item xs={6} md={8}>
     <Item  >
 
-    <ImageSlider data = {altImages}></ImageSlider>
+      { loading?<Dots></Dots>:<ImageSlider data = {altImages}></ImageSlider>}
+
+   
     </Item>
     <Item>
 
