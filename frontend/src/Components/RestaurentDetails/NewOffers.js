@@ -4,7 +4,7 @@ import "./NewOffers.css";
 function NewOffers() {
   return (
     <div id="offers">
-      <section className="rdp-section free-offers-wrap" style={{width:"50%"}}>
+      <section className="rdp-section free-offers-wrap" style={{width:"62.5%"}}>
         <h3 className="cursor">Free Offers</h3>
         <div className=" offer-reservations-card box-rdp free-offers d-flex ">
           <div className="free-offers_content">

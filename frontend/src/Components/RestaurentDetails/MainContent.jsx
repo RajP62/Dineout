@@ -27,7 +27,7 @@ export const MainContent = ()=>{
               <DinePage />
               <Menu />
               <AboutRestaurant product="product" />
-              <YouMayLike />
+              {/* <YouMayLike /> */}
               <Help />
     </div>
     <div className="sidebar-book-section" style={{padding:"2%"}}>

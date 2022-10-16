@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import { useSelector } from "react-redux";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -13,16 +14,19 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export const OrderDetails = () => {
+
+
+  let {restaurantDetails,bookingDetails}=useSelector((state)=>state)
   return (
     <Box sx={{ overflow: "hidden"}}>
       <Paper sx={{ maxWidth: 850, my: 1, mx: "auto", p: 1}}>
         <Grid container wrap="nowrap" spacing={1}>
           <Grid item xs zeroMinWidth>
             <Typography align="center">
-              <h1>ABs - Absolute Barbecues </h1>
+              <h1>{restaurantDetails.name}</h1>
             </Typography>
             <Typography align="center" container wrap="nowrap" color="#585858">
-              <h3>Chandivali, Powai, Mumbai,</h3>
+              <h3>{restaurantDetails.adress}</h3>
             </Typography>
           </Grid>
         </Grid>
@@ -51,10 +55,10 @@ export const OrderDetails = () => {
           <Item>Table Status - Confirmed </Item> <Item>Your reservation is confirmed! Happy Dining</Item>
         </Box>
         <Box item xs sx={{ display: "flex",justifyContent: "space-between", p: 1, m: 1, }}>
-          <Item>Date & Time </Item><Item>24th Jan 2022 at 11:30 AM</Item>
+          <Item>Date & Time </Item><Item>{`${bookingDetails.Date} at ${bookingDetails.BookTime}`}</Item>
         </Box>  
         <Box item xs sx={{ display: "flex",justifyContent: "space-between", p: 1, m: 1, }}>
-          <Item>Guests </Item><Item>2 Guests</Item>
+          <Item>Guests </Item><Item>{` ${bookingDetails.Guest} Guests`}</Item>
         </Box>  
         <Box item xs sx={{ display: "flex",justifyContent: "space-between", p: 1, m: 1, }}>
           <Item>Name </Item><Item>Vijay</Item>

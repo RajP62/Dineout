@@ -7,7 +7,7 @@ const crypto = require("node:crypto");
     
 router.post("/add", async(req,res)=>{
     try{
-        const {firstName, lastName, email, password, role} = req.body;
+        const {firstName, lastName, email, password, role="user"} = req.body;
         const token = crypto.pbkdf2Sync(password, process.env.CRYPTO_SALT, 60, 60, "sha256").toString("hex");
         const user = new User({firstName, lastName, email, password:token, role});
         user.save().then(()=>{
@@ -32,7 +32,9 @@ router.post("/login", async(req, res)=>{
         if(user.length===0){
             return res.status(401).send({error: true, message: "User doesn't exist with such email"});
         }
+      
         let {firstName, lastName, email:mail, role} = user[0];
+     
         if(user[0].password!==hash){
             return res.status(401).send({error: true, message:"Invalid password"});
         }
@@ -69,7 +71,7 @@ router.get("/refresh", async(req, res)=>{
         const {firstName, lastName, email, role} = decoded;
 
         const access_jwt = jwt.sign({firstName, lastName, email, role}, process.env.JWT_KEY, {expiresIn: "10m"});
-        res.cookie("access", access_jwt, {httpOnly : true, maxAge: 600000});
+        res.cookie("access", access_jwt, { maxAge: 600000});
         return res.send({error: false, message: "Access token sent successfully"});
     }
     catch(e){

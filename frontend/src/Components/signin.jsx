@@ -3,10 +3,14 @@ import styled from "styled-components";
 import { useContext, useState } from "react";
 
 import { SigninContext } from "../Context/SignInContext";
+import { Input } from '@mui/material';
 
 
-
+import { FormControlLabel } from '@mui/material';
 import Model from "react-modal";
+import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { SIGNIN } from "../Store/actiontype/auth.action.type";
 
 const Style = styled.div`
   /* height: 455px; */
@@ -148,12 +152,15 @@ const Style = styled.div`
     }
   }
   .top_cross {
+
     cursor: pointer;
+    position: absolute;
+    top: 25px;
     width: 24px;
     height: 24px;
     border-radius: 20px;
+    
     align-items: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.03);
   }
   #recaptcha-container {
     width: 80%;
@@ -161,6 +168,16 @@ const Style = styled.div`
     margin-top: 20px;
   }
 `;
+
+const inputstyles = {
+  borderRadius: "5px",
+  display: "block",
+  width: "100%",
+  height: "36px",
+  marginTop: "20px",
+  marginBottom: "20px",
+  border: "0.5px solid black"
+}
 const customStyles = {
   content: {
     top: "50%",
@@ -177,58 +194,45 @@ const customStyles = {
 };
 
 export const Signin = () => {
-  const { model, handleModel, handleSignupModel, handleOtp, handleSetFinal } =
-    useContext(SigninContext);
+
+
+  let emailref=useRef("")
+  let passwordref= useRef("")
+
+
   // Inputs
 
-  const [mynumber, setnumber] = useState("");
-  const [auth,setauth] = useState(false)
+ let handlesubmit= (e)=>{
+
+e.preventDefault()
+
+let payload = {
+  email:emailref.current.value,
+  password:passwordref.current.value
+}
+console.log("payload",payload)
+fetch("http://localhost:4000/users/login",{
+  method:"POST",
+  headers:{
+    "Content-Type":"application/json"
+  },
+  body:JSON.stringify(payload)
+}).then((res)=>res.json()).then((res)=>{console.log(res,"res")})
 
 
 
-  const signin = () => {
+ }
 
-    console.log(mynumber)
-    console.log("hello")
-    if (mynumber === "" || mynumber.length < 10){
-      setauth(false)
-      alert("enter valid number")
-      
-    }
-    
-    else{
-setauth(true)
-handleModel()
-    }
-  }
-    // let verify = new firebase.auth.RecaptchaVerifier("recaptcha-container");
-    // auth
-    //   .signInWithPhoneNumber("+91" + mynumber, verify)
-    //   .then(async (result) => {
-    //     const { data } = await getUserByMobile(`+91` + mynumber);
-    //     if (data) {
-    //       setBug(false);
-    //       handleSetFinal(result);
-    //       localStorage.setItem("dineout-userId", JSON.stringify(data?._id));
-    //       localStorage.setItem("number", JSON.stringify(mynumber));
-    //       handleOtp();
-    //     } else {
-    //       setBug(true);
-    //       // alert("No user Found");
-    //       // handleSignupModel();
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     alert(err);
-    //     window.location.reload();
-    //   });
-  // };
+
+
+ let dispatch = useDispatch()
+let {signin}=useSelector((state)=>state)
 
   return (
-    <Model style={customStyles} isOpen={model}>
+    <Model style={customStyles} isOpen={signin}>
       <Style>
       <div className="holder" style={{width: "100%", display: "flex", justifyContent:"end "}}>
-        <div onClick={() => handleModel()} className="top_cross">
+        <div onClick={() =>dispatch({type:SIGNIN})} className="top_cross">
           <svg
             width="12"
             height="12"
@@ -246,23 +250,31 @@ handleModel()
           </div>
         <h1>Login</h1>
         <div className="inputBox">
-          <p>Phone number</p>
-          <div>
+          <form onSubmit={handlesubmit}>
+
+<label>Email</label>
+<input ref={emailref} style ={inputstyles} placeholder="enter email"></input>
+<label>Password</label>
+<input ref={passwordref} style={inputstyles} placeholder="enter password"></input>
+<button type="submit"  className="signup_button">
+          login
+        </button>
+
+          </form>
+          {/* <div>
             <input
               value={mynumber}
               placeholder="Enter Your Number"
               onChange={(e) => setnumber(e.target.value)}
               type="number"
             />
-          </div>
+          </div> */}
         </div>
         <div id="recaptcha-container"></div>
         {/* <div className={!auth ? "noUserCheck" : "hide"}>
           User Not Found, Signup First
         </div> */}
-        <button  onClick={signin} className="signup_button">
-          SEND OTP
-        </button>
+        
         <div className="lines">
           <span></span>
           <p>Or login via</p>
@@ -311,19 +323,6 @@ handleModel()
             </svg>
             <p>Facebook</p>
           </div>
-        </div>
-        <div className="end_line">
-          <p>
-            Don't have an account?{" "}
-            <span
-              onClick={() => {
-               
-                handleSignupModel();
-              }}
-            >
-              Create one
-            </span>
-          </p>
         </div>
       </Style>
       </Model>

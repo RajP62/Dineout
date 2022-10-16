@@ -34,15 +34,16 @@ router.get("", async(req,res)=>{
         bestSelling = bestSelling? bestSelling.split("&") : [];
         sort = sort? sort==='price_asc'? {'avgcost' : 1} : sort==='price_desc'? {'avgcost': -1} : sort==='popularity'? {"featured": -1} : {sort : 1} : {sort : 1};
 
-        let data = await Restaurants.aggregate([{$match:{$and: [{$expr:{$setIsSubset:[bestSelling, "$about.bestselling"]}}, {$expr:{$setIsSubset:[facilities, "$about.facilities"]}}, {$expr:{$setIsSubset:[dishes, "$about.quickFilters"]}}, {$expr:{$setIsSubset:[tags, "$about.type"]}}, {$expr:{$setIsSubset:[cuisines, "$about.cuisine"]}}]}}, {$sort:sort}]).skip(skip).limit(limit);
-        
-        const totalPages = Math.ceil(data.length/limit);
+        let data = await Restaurants.aggregate([{$match:{$and: [{$expr:{$setIsSubset:[bestSelling, "$about.bestselling"]}}, {$expr:{$setIsSubset:[facilities, "$about.facilities"]}}, {$expr:{$setIsSubset:[dishes, "$about.quickFilters"]}}, {$expr:{$setIsSubset:[tags, "$about.type"]}}, {$expr:{$setIsSubset:[cuisines, "$about.cuisine"]}}]}}, {$sort:sort}, {$group:{_id:"totalPages", count: {$sum: 1}}}]);
+        const totalPages = data[0]?.count;
+        data = await Restaurants.aggregate([{$match:{$and: [{$expr:{$setIsSubset:[bestSelling, "$about.bestselling"]}}, {$expr:{$setIsSubset:[facilities, "$about.facilities"]}}, {$expr:{$setIsSubset:[dishes, "$about.quickFilters"]}}, {$expr:{$setIsSubset:[tags, "$about.type"]}}, {$expr:{$setIsSubset:[cuisines, "$about.cuisine"]}}]}}, {$sort:sort}]).skip(skip).limit(limit);
+
 
         return res.status(200).json({data, totalPages});
     }
     catch(e){
-        return res.status(500).json({status:"failed",message:e.message});
-    }
+        console.log("error is ", e.message);
+        return res.status(500).json({status:"failed",message:e.message})}
 });
 
 router.get("/filter", authenticate, authorise(['user', 'admin']), async(req,res)=>{
@@ -56,9 +57,10 @@ router.get("/filter", authenticate, authorise(['user', 'admin']), async(req,res)
     }
 });
 
-router.get('/id/:id', authenticate, authorise(['user', 'admin']), async(req,res)=>{
+router.get('/id/:id', async(req,res)=>{
     try{
-        let data = await Restaurants.findById(req.params.id).populate("reviews").populate({path:"about.cuisine", model:"cuisine"}).populate({path:"about.type",model:"type"}).populate({path:"about.quickFilters", model:"quickfilter"}).populate({path:"about.facilities", model:"facility"}).lean().exec();
+       
+        let data = await Restaurants.findById(req.params.id).lean().exec();
         return res.status(200).json({data})
     }
     catch(e){
@@ -66,7 +68,7 @@ router.get('/id/:id', authenticate, authorise(['user', 'admin']), async(req,res)
     }
 }); 
 
-router.get("/featured", authenticate, authorise(['user', 'admin']), async(req,res)=>{
+router.get("/featured", async(req,res)=>{
     try{
         const data = await Restaurants.find({featured: true}).lean().exec();
         return res.status(200).json({data});

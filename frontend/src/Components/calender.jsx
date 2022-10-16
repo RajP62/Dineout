@@ -7,6 +7,8 @@ import styled from "styled-components";
 import { useContext } from "react";
 import { CalenderContext } from "../Context/CalenderContext";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { DATE } from "../Store/actiontype/auth.action.type";
 
 const Wrapper = styled.div`
   padding: 20px 24px 20px 30px;
@@ -95,9 +97,17 @@ export default function Calender({ bookDate, setBookDate }) {
   };
 
 
-  const {Date,handleDate} = useContext(CalenderContext)
+
+let {bookingDetails}= useSelector((state)=>state)
+
+let {Date}=bookingDetails
+
+let dispatch = useDispatch()
 
 
+let handleDate = (value)=>{
+dispatch({type:DATE,payload:value})
+}
   
   return (
     <Wrapper>

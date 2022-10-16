@@ -1,6 +1,7 @@
 import React from "react";
 import "./footer.css";
 
+
 const Footer = () => {
   return (
     <>
@@ -161,7 +162,7 @@ const Footer = () => {
             {[
               "https://www.svgrepo.com/show/134513/youtube.svg",
               "https://www.svgrepo.com/show/120931/facebook.svg",
-              "https://logo-logos.com/wp-content/uploads/2016/10/Instagram_logo_icon.png",
+              "https://www.svgrepo.com/show/331440/instagram.svg",
               "https://www.svgrepo.com/show/126780/twitter.svg"
             ].map((item) => (
 

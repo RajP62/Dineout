@@ -7,6 +7,8 @@ import { CalenderContext } from "../Context/CalenderContext";
 import "./Timeslot.css";
 import { SigninContext } from "../Context/SignInContext";
 import { Signup } from "./signup";
+import { useDispatch, useSelector } from "react-redux";
+import { BOOK, GUEST, STATUS } from "../Store/actiontype/auth.action.type";
 const Wrapper = styled.div`
   object-fit: contain;
   display: flex;
@@ -77,6 +79,12 @@ const TimeSlots = ({ timeStatus, setTimeStatus }) => {
     });
   }
   
+let state= useSelector((state)=>state)
+
+console.log(state,"details")
+let {BookTime,Status,Guest,Date}=state.bookingDetails
+
+
   useEffect(()=>{
     loadScript(`https://checkout.razorpay.com/v1/checkout.js`);
   })
@@ -84,13 +92,28 @@ const TimeSlots = ({ timeStatus, setTimeStatus }) => {
 
 const {handleSignupModel} = useContext(SigninContext)
 
-const {BookTime,Status,Guest,handleBookTime,handleStatus,addGuest,removeGuest}=useContext(CalenderContext)
+
+let dispatch = useDispatch()
+
+let handleBookTime = (value)=>{
+dispatch({type:BOOK,payload:value})
+}
+
+
+let handleStatus =(value)=>{
+dispatch({type:STATUS,payload:value})
+}
+
+let handleGuest = (num)=>{
+  dispatch({type:GUEST,payload:num})
+}
+
 
   
   
   return (
     <>
-    <Signup/>
+    
       <div className="scroll">
         <div className="title">
           <h1>Make a Reservation</h1>
@@ -106,13 +129,7 @@ const {BookTime,Status,Guest,handleBookTime,handleStatus,addGuest,removeGuest}=u
             </div>
           )}
           <div>
-            {"23 December" && <b>{"23 December 2021"}</b>}
-            {"11:30" && (
-              <>
-                <span>&#124;</span>
-                <b>{BookTime}</b>
-              </>
-            )}
+           {Date}
           </div>
           <div>
           <Calender/>
@@ -271,7 +288,7 @@ const {BookTime,Status,Guest,handleBookTime,handleStatus,addGuest,removeGuest}=u
         <p>Choose the number of guests going</p>
         <div className="guest__count--parent">
           <h4>Guests:</h4>
-          <button style={{border:"none"}} onClick={()=>removeGuest()}
+          <button style={{border:"none"}} onClick={()=>handleGuest(-1)}
           
           disabled={Guest < 1}>
             <img
@@ -280,7 +297,7 @@ const {BookTime,Status,Guest,handleBookTime,handleStatus,addGuest,removeGuest}=u
             ></img>
           </button>
           {Guest}
-          <button style={{border:"none"}} onClick={()=>addGuest()}
+          <button style={{border:"none"}} onClick={()=>handleGuest(1)}
                disabled={Guest > 10}>
             <img
               src="https://dineout-clone.vercel.app/static/media/add.00614146.svg"

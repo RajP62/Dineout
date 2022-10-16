@@ -19,9 +19,12 @@ app.use((req, res, next) => {
 
 const restaurantCont = require("./controllers/restaurant.controller");
 const userCont = require("./controllers/user.controller");
+const razorpayCont = require("./controllers/razorpay.controller");
 app.use("/restaurants", restaurantCont);
 
 app.use("/users", userCont);
+
+app.use("/razorpay", razorpayCont);
 
 
 module.exports = app;

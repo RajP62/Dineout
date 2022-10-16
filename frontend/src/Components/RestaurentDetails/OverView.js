@@ -37,16 +37,7 @@ function OffersView() {
             About
           </a>
         </li>
-        <li>
-          <a
-            href="#review-section"
-
-            className=""
-          >
-            {" "}
-            Reviews (151)
-          </a>
-        </li>
+       
         <li>
           <a
             href="#help"
