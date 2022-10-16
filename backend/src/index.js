@@ -11,20 +11,20 @@ app.use(fileParser());
 //     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 // }
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://singular-wisp-16a48c.netlify.app/');
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000/');
     res.header("Access-Control-Allow-Private-Network", true);
     res.header("InsecurePrivateNetworkRequestsAllowed", true);
     next();
   });
-
+  
+  const razorpayCont = require("./controllers/razorpay.controller");
 const restaurantCont = require("./controllers/restaurant.controller");
 const userCont = require("./controllers/user.controller");
-const razorpayCont = require("./controllers/razorpay.controller");
+app.use("/razorpay", razorpayCont);
 app.use("/restaurants", restaurantCont);
 
 app.use("/users", userCont);
 
-app.use("/razorpay", razorpayCont);
 
 
 module.exports = app;

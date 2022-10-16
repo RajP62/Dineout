@@ -57,7 +57,7 @@ export const RestraurantDetail = () => {
       console.log(data,"response")
   
       setProduct(data.data);
-      dispatch({type:RESTAURANTDETAILS,payload:{name:data.data.title,adress:`${data.data.place}-${data.data.district}`}})
+      dispatch({type:RESTAURANTDETAILS,payload:{name:data.data.title,adress:`${data.data.place}-${data.data.district}`, price: data.data.avgcost.trim().split(" ")[0]}})
     };
     useEffect(() => {
       getProduct();

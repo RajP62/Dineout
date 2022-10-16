@@ -28,7 +28,6 @@ router.post("/login", async(req, res)=>{
         const {email, password} = req.body;
         const hash = crypto.pbkdf2Sync(password, process.env.CRYPTO_SALT, 60, 60, "sha256").toString("hex");
         let user = await User.find({email});
-        console.log("entered");
         if(user.length===0){
             return res.status(401).send({error: true, message: "User doesn't exist with such email"});
         }
@@ -81,11 +80,22 @@ router.get("/refresh", async(req, res)=>{
 
 router.get("", async(req,res)=>{
     try{
-        const users = await User.find().lean().exec();
-        return res.status(200).send({data:users});
+        const access = req.cookies?.access;
+        if(!access){
+            return res.send({error: true, message: "User is not authenticated"});
+        }
+        let data = await new Promise((resolve, reject)=>{
+            jwt.verify(access, process.env.JWT_KEY, function(err, decodedV){
+                if(err){
+                    reject(err.message);
+                }
+                resolve(decodedV);
+            });
+        });
+        return res.send({error: false, data});
     }
     catch(e){
-        res.status(500).json({message: e.message});
+        return res.status(500).json({message: e});
     }
 });
 

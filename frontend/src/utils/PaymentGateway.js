@@ -1,11 +1,15 @@
-import {useNavigate} from "react-router-dom";
+import { alignProperty } from "@mui/material/styles/cssUtils";
 
-export default async function displayRazorpay(){
-    console.log('entered')
+
+export default async function DisplayRazorpay(price, name){
+    price = +price;
     const data = await fetch("http://localhost:4000/razorpay",{
-        method: "POST"
+        method: "POST",
+        body: JSON.stringify({price}),
+        headers:{
+            'Content-Type':"application/json"
+        }
     }).then(res=>res.json());
-    console.log("datacame is ", data)
    const {currency, amount, id} = data;
     const options = {
         key: process.env.RZP_KEY,
@@ -15,20 +19,21 @@ export default async function displayRazorpay(){
         image: 'https://st1.dineout-cdn.co.in/images/uploads/misc/2019/Jul/25/website-logo.png',
         order_id: id,
         handler: function(response){
-            alert("Payment Id :", response.razorpay_payment_id);
-            alert("Order Id :", response.razorpay_order_id);
-            // navigate("/success");
+            const {razorpay_order_id, razorpay_payment_id} = response;
+            alert("Order Id", razorpay_order_id);
         },
         prefill: {
-            name: "Rajesh Paul",
-            email: "rajesh4151999@gmail.com",
-            contact: '9210812067'
+            name:"User",
+            email: "test@gmail.com",
+            contact: '8867756364'
         },
-        callback_url:"http://localhost:3000/success"
+        callback_url:"http://localhost:4000/razorpay/result",
+        redirect: true
 
     }
 
     const paymentObject = new window.Razorpay(options);
 
     paymentObject.open();
+
 }

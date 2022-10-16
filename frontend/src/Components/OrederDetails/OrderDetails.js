@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -14,6 +14,18 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export const OrderDetails = () => {
+const [userData, setUserData] = useState({});
+const {firstName, lastName, email} = userData;
+  useEffect(()=>{
+    fetch(`http://localhost:4000/users`,{credentials:"include"}).then(res=>res.json()).then(res=>{
+      console.log("backend response",res);
+      if(res.data){
+        setUserData(res.data);
+      }
+    }).catch(e=>{
+      console.log(e.message);
+    })
+  },[]);
 
 
   let {restaurantDetails,bookingDetails}=useSelector((state)=>state)
@@ -37,11 +49,11 @@ export const OrderDetails = () => {
         </Box>
         <Box item xs sx={{ display: "flex",justifyContent: "space-between", p: 1, m: 1 }}>
           <Item>Guest Name: </Item>
-          <Item>Vijay</Item>
+          <Item>{firstName+" "+lastName}</Item>
         </Box>
         <Box item xs sx={{ display: "flex",justifyContent: "space-between", p: 1, m: 1, }}>
-          <Item>Phone no.: </Item>
-          <Item>908567657888</Item>
+          <Item>Email : </Item>
+          <Item>{email}</Item>
         </Box>        
       </Paper>
 
@@ -55,13 +67,13 @@ export const OrderDetails = () => {
           <Item>Table Status - Confirmed </Item> <Item>Your reservation is confirmed! Happy Dining</Item>
         </Box>
         <Box item xs sx={{ display: "flex",justifyContent: "space-between", p: 1, m: 1, }}>
-          <Item>Date & Time </Item><Item>{`${bookingDetails.Date} at ${bookingDetails.BookTime}`}</Item>
+          <Item>Date & Time </Item><Item>{`${bookingDetails.Date} at ${new Date(Date.now().toLocaleString({timeZone: 'Asia/Kolkata'}))}`}</Item>
         </Box>  
         <Box item xs sx={{ display: "flex",justifyContent: "space-between", p: 1, m: 1, }}>
-          <Item>Guests </Item><Item>{` ${bookingDetails.Guest} Guests`}</Item>
+          <Item>Guests </Item><Item>{`2 Guests`}</Item>
         </Box>  
         <Box item xs sx={{ display: "flex",justifyContent: "space-between", p: 1, m: 1, }}>
-          <Item>Name </Item><Item>Vijay</Item>
+          <Item>Name </Item><Item>{firstName+" "+lastName}</Item>
         </Box>    
         <Box item xs sx={{ display: "flex",justifyContent: "space-between", p: 1, m: 1, }}>
           <Item>ID </Item><Item>DO14194830</Item>

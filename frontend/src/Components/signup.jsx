@@ -211,7 +211,7 @@ e.preventDefault()
       fetch("http://localhost:4000/users/add",{
           method:"POST",
           body:(payload),
-        
+          credentials: "include",
           headers:{
               "Content-Type":"application/json"
           }

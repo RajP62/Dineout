@@ -15,7 +15,8 @@ let initialstate = {
     },
     restaurantDetails:{
    name:"",
-   address:""
+   address:"",
+   price:"",
     }
 }
 export const authreducer = (state=initialstate,{type,payload})=>{
@@ -50,7 +51,7 @@ case DATE :{
 }
 
 case RESTAURANTDETAILS :{
-    return {...state,restaurantDetails:{...state.restaurantDetails,name:payload.name,adress:payload.adress}}
+    return {...state,restaurantDetails:{...state.restaurantDetails,name:payload.name,adress:payload.adress, price: payload.price}}
 }
     default:{
 return state
