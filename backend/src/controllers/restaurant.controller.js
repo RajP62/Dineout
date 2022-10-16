@@ -35,6 +35,7 @@ router.get("", async(req,res)=>{
         sort = sort? sort==='price_asc'? {'avgcost' : 1} : sort==='price_desc'? {'avgcost': -1} : sort==='popularity'? {"featured": -1} : {sort : 1} : {sort : 1};
 
         let data = await Restaurants.aggregate([{$match:{$and: [{$expr:{$setIsSubset:[bestSelling, "$about.bestselling"]}}, {$expr:{$setIsSubset:[facilities, "$about.facilities"]}}, {$expr:{$setIsSubset:[dishes, "$about.quickFilters"]}}, {$expr:{$setIsSubset:[tags, "$about.type"]}}, {$expr:{$setIsSubset:[cuisines, "$about.cuisine"]}}]}}, {$sort:sort}]).skip(skip).limit(limit);
+        
         const totalPages = Math.ceil(data.length/limit);
 
         return res.status(200).json({data, totalPages});
