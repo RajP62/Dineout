@@ -12,6 +12,7 @@ const verifyToken = (token)=>{
 module.exports = async (req, res, next)=>{
    
     const bearerToken = req.cookies?.access;
+    console.log("cookie is",bearerToken)
     let user;
     try{
         user= await verifyToken(bearerToken);
