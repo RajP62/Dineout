@@ -11,7 +11,7 @@ app.use(fileParser());
 //     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 // }
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000/');
+    res.header('Access-Control-Allow-Origin', 'https://dineoutclone-gamma.vercel.app/');
     res.header("Access-Control-Allow-Private-Network", true);
     res.header("InsecurePrivateNetworkRequestsAllowed", true);
     next();
