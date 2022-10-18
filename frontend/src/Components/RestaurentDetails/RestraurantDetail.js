@@ -53,7 +53,7 @@ export const RestraurantDetail = () => {
     const getProduct = async () => {
       setloading(true)
       const response = await fetch(
-        `http://localhost:4000/restaurants/id/${clickedId}`,
+        `https://dineoutappclone.herokuapp.com/restaurants/id/${clickedId}`,
         { mode: "cors",credentials:"include" },
     
       );
@@ -62,7 +62,7 @@ export const RestraurantDetail = () => {
       console.log(data,"response")
   
 if(data.error){
-fetch("http://localhost:4000/users/refresh").then((res)=>res.json()).then((res)=>{
+fetch("https://dineoutappclone.herokuapp.com/users/refresh").then((res)=>res.json()).then((res)=>{
 
 if(res.error){
   navigate("/")

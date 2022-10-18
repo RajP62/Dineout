@@ -22,7 +22,7 @@ export const OrderDetails = () => {
 const [userData, setUserData] = useState({});
 const {firstName, lastName, email} = userData;
   useEffect(()=>{
-    fetch(`http://localhost:4000/users`,{credentials:"include"}).then(res=>res.json()).then(res=>{
+    fetch(`https://dineoutappclone.herokuapp.com/users`,{credentials:"include"}).then(res=>res.json()).then(res=>{
       console.log("backend response",res);
         if(res.error){
           console.log("entering");

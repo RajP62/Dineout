@@ -3,7 +3,7 @@ import { alignProperty } from "@mui/material/styles/cssUtils";
 
 export default async function DisplayRazorpay(price, name){
     price = +price;
-    const data = await fetch("http://localhost:4000/razorpay",{
+    const data = await fetch("https://dineoutappclone.herokuapp.com/razorpay",{
         method: "POST",
         body: JSON.stringify({price}),
         headers:{
@@ -27,7 +27,7 @@ export default async function DisplayRazorpay(price, name){
             email: "test@gmail.com",
             contact: '8867756364'
         },
-        callback_url:"http://localhost:4000/razorpay/result",
+        callback_url:"https://dineoutappclone.herokuapp.com/razorpay/result",
         redirect: true
 
     }

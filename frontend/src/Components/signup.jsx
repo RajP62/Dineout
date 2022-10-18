@@ -211,7 +211,7 @@ e.preventDefault()
       payload= JSON.stringify(payload)
       console.log(payload,payload)
 
-      fetch("http://localhost:4000/users/add",{
+      fetch("https://dineoutappclone.herokuapp.com/users/add",{
           method:"POST",
           body:(payload),
           credentials: "include",

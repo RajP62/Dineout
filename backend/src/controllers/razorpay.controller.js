@@ -31,7 +31,7 @@ router.post("", async (req, res)=>{
 
 router.post("/result", async(req,res)=>{
     try {
-        return res.redirect("http://localhost:3000/success");
+        return res.redirect("https://dineoutclone-gamma.vercel.app/success");
     } catch (e) {
         res.status(500).json({message: "Internal server error"});
     }

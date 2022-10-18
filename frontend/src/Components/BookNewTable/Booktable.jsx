@@ -37,7 +37,7 @@ let [loading,setloading]=useState(false)
   let [totalpages,settotalpages]=useState(1)
   const getResturents = async () => {
     setloading(true)
-    const response = await fetch(`http://localhost:4000/restaurants?cuisines=${cuisines.join("&")}&tags=${tags.join("&")}&features=${features.join("&")}&dishes=${dishes.join("&")}&facilities=${facilities.join("&")}&sort=${sort}&page=${page}&limit=6`, { mode: "cors" });
+    const response = await fetch(`https://dineoutappclone.herokuapp.com/restaurants?cuisines=${cuisines.join("&")}&tags=${tags.join("&")}&features=${features.join("&")}&dishes=${dishes.join("&")}&facilities=${facilities.join("&")}&sort=${sort}&page=${page}&limit=6`, { mode: "cors" });
     const data = await response.json()
     setloading(false)
     console.log(data)
@@ -46,12 +46,6 @@ console.log(data.totalPages)
     settotalpages(data.totalPages)
 
   }
-  // const cuisines = async () => {
-  //   const response = await fetch('https://backend-dineout.herokuapp.com/restaurants', { mode: "cors" });
-  //   const data = await response.json()
-  //   let filtered = data.filter(el=>el.about.quickFilters.includes("Pure Veg")? true : false);
-  //   setResturent(filtered);
-  // }
   useEffect(() => {
     getResturents();
   }, [filters,sort,page])

@@ -26,10 +26,10 @@ export const HomePage = () => {
     const {setClickedId} = useContext(ClickedContext);
 
     const getData = async()=>{
-        let data = await fetch("http://localhost:4000/restaurants");
+        let data = await fetch("https://dineoutappclone.herokuapp.com/restaurants");
         let realData = await data.json();
         setData(realData.data);
-        let featured = await fetch("http://localhost:4000/restaurants/featured");
+        let featured = await fetch("https://dineoutappclone.herokuapp.com/restaurants/featured");
         let featuredReal = await featured.json();
         setFeaturedData(featuredReal.data);
     }
