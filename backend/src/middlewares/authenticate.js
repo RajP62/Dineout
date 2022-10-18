@@ -18,7 +18,7 @@ module.exports = async (req, res, next)=>{
         user= await verifyToken(bearerToken);
     }
     catch(e){
-        return res.status(400).send({error:true, message: "Authentication failed due to invalid token"});
+        return res.status(400).send({error:true, message: e.message});
     }
 
     if(!user){

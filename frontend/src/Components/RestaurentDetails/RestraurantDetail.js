@@ -12,7 +12,7 @@ import Grid from '@mui/material/Grid';
 // import TopHead from "./TopHead";
 // import YouMayLike from "./YouMayLike";
 // import Help from "./Help";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 // import TimeSlots from "../Timeslot";
 import { useContext } from "react";
@@ -46,20 +46,37 @@ export const RestraurantDetail = () => {
 
   const {clickedId} = useContext(ClickedContext);
     console.log(clickedId,"id")
+
+    let navigate = useNavigate()
   let [loading,setloading]=useState(false)
-    const [product, setProduct] = useState([]);
+    const [product, setProduct] = useState({ title:"", about:"",state:"", place:"", district:"", imagePrimary:"", altImages:[] });
     const getProduct = async () => {
       setloading(true)
       const response = await fetch(
         `http://localhost:4000/restaurants/id/${clickedId}`,
-        { mode: "cors" }
+        { mode: "cors",credentials:"include" },
+    
       );
       const data = await response.json();
       setloading(false)
       console.log(data,"response")
   
-      setProduct(data.data);
-      dispatch({type:RESTAURANTDETAILS,payload:{name:data.data.title,adress:`${data.data.place}-${data.data.district}`}})
+if(data.error){
+fetch("http://localhost:4000/users/refresh").then((res)=>res.json()).then((res)=>{
+
+if(res.error){
+  navigate("/")
+}
+})
+
+}else{
+  setProduct(data.data);
+  dispatch({type:RESTAURANTDETAILS,payload:{name:data.data?.title,adress:`${data.data?.place}-${data.data?.district}`, price: data.data?.avgcost.trim().split(" ")[0]}})
+}
+
+
+     
+      
     };
     useEffect(() => {
       getProduct();
@@ -67,13 +84,16 @@ export const RestraurantDetail = () => {
   
   
   
-    console.log(product)
+   
   
  let {restaurantDetails} = useSelector((state)=>state)
+
+ 
   
    var { title, about,state, place, district, imagePrimary, altImages } = product;
       
     let dispatch = useDispatch()
+
 
 
 console.log(restaurantDetails,"restaurant")

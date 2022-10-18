@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -14,16 +14,30 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export const OrderDetails = () => {
+const [userData, setUserData] = useState({});
+const {firstName, lastName, email} = userData;
+  useEffect(()=>{
+    fetch(`http://localhost:4000/users`,{credentials:"include"}).then(res=>res.json()).then(res=>{
+      console.log("backend response",res);
+      if(res.data){
+        setUserData(res.data);
+      }
+    }).catch(e=>{
+      console.log(e.message);
+    })
+  },[]);
 
 
   let {restaurantDetails,bookingDetails}=useSelector((state)=>state)
+
+  console.log(restaurantDetails,bookingDetails)
   return (
     <Box sx={{ overflow: "hidden"}}>
       <Paper sx={{ maxWidth: 850, my: 1, mx: "auto", p: 1}}>
         <Grid container wrap="nowrap" spacing={1}>
           <Grid item xs zeroMinWidth>
             <Typography align="center">
-              <h1>{restaurantDetails.name}</h1>
+              <h1>{firstName+ " "+ lastName}</h1>
             </Typography>
             <Typography align="center" container wrap="nowrap" color="#585858">
               <h3>{restaurantDetails.adress}</h3>
@@ -37,11 +51,11 @@ export const OrderDetails = () => {
         </Box>
         <Box item xs sx={{ display: "flex",justifyContent: "space-between", p: 1, m: 1 }}>
           <Item>Guest Name: </Item>
-          <Item>Vijay</Item>
+          <Item>{firstName+" "+lastName}</Item>
         </Box>
         <Box item xs sx={{ display: "flex",justifyContent: "space-between", p: 1, m: 1, }}>
-          <Item>Phone no.: </Item>
-          <Item>908567657888</Item>
+          <Item>Email : </Item>
+          <Item>{email}</Item>
         </Box>        
       </Paper>
 
@@ -58,10 +72,10 @@ export const OrderDetails = () => {
           <Item>Date & Time </Item><Item>{`${bookingDetails.Date} at ${bookingDetails.BookTime}`}</Item>
         </Box>  
         <Box item xs sx={{ display: "flex",justifyContent: "space-between", p: 1, m: 1, }}>
-          <Item>Guests </Item><Item>{` ${bookingDetails.Guest} Guests`}</Item>
+          <Item>Guests </Item><Item>{`2 Guests`}</Item>
         </Box>  
         <Box item xs sx={{ display: "flex",justifyContent: "space-between", p: 1, m: 1, }}>
-          <Item>Name </Item><Item>Vijay</Item>
+          <Item>Name </Item><Item>{firstName+" "+lastName}</Item>
         </Box>    
         <Box item xs sx={{ display: "flex",justifyContent: "space-between", p: 1, m: 1, }}>
           <Item>ID </Item><Item>DO14194830</Item>

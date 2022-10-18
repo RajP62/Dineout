@@ -3,6 +3,7 @@ import Container from '@mui/material/Container';
 import Style from "styled-components";
 import { BsSearch } from "react-icons/bs";
 import "./homepage.css";
+
 import discountten from "../../images/Homepage/disten.png";
 import discounttwenty from "../../images/Homepage/distwenty.png";
 import discountfifteen from "../../images/Homepage/disfif.png";
@@ -41,6 +42,7 @@ export const HomePage = () => {
         getData();
     },[])
     return <>
+      
         <Box sx={{ height: "400px", backgroundImage: `url(https://im1.dineout.co.in/images/uploads/misc/2021/Mar/31/oldherobannerwebfinal_bau.jpg)`, backgroundSize: "cover", display: "flex", justifyContent: "center", alignItems: "center"}}>
             <Box className="searchOuterBox">
                 <h1 style={{ color: "white", fontSize: "40px" }}>It's Now Safe To <span style={{ color: "#FF4C2B" }}>Crave!</span></h1>

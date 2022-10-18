@@ -57,14 +57,14 @@ router.get("/filter", authenticate, authorise(['user', 'admin']), async(req,res)
     }
 });
 
-router.get('/id/:id', authenticate, async(req,res)=>{
+router.get('/id/:id',authenticate,authorise(["user"]),  async(req,res)=>{
     try{
        
         let data = await Restaurants.findById(req.params.id).lean().exec();
         return res.status(200).json({data})
     }
     catch(e){
-        res.status(500).json({error:e.message});
+        res.status(500).json({error:true,error:e.message});
     }
 }); 
 

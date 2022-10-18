@@ -10,7 +10,7 @@ import { FormControlLabel } from '@mui/material';
 import Model from "react-modal";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SIGNIN } from "../Store/actiontype/auth.action.type";
+import { SETAUTH, SIGNIN } from "../Store/actiontype/auth.action.type";
 import { useNavigate } from "react-router";
 
 const Style = styled.div`
@@ -185,6 +185,7 @@ const customStyles = {
     left: "50%",
     right: "auto",
     bottom: "auto",
+    zIndex:5,
     padding: "0px",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
@@ -196,12 +197,12 @@ const customStyles = {
 
 export const Signin = () => {
 
-
+let [failedauth,setfailedauth]=useState(false)
   let emailref=useRef("")
   let passwordref= useRef("")
 
 let navigate = useNavigate()
-
+let dispatch = useDispatch()
 
   // Inputs
 
@@ -216,7 +217,9 @@ let payload = {
 console.log("payload",payload)
 fetch("http://localhost:4000/users/login",{
   method:"POST",
- credentials:"include",
+
+  credentials:"include",
+
   headers:{
     "Content-Type":"application/json"
   },
@@ -224,12 +227,20 @@ fetch("http://localhost:4000/users/login",{
 }).then((res)=>res.json()).then((res)=>{
   
   console.log("res",res)
+
+  if(!res.error){
+    setfailedauth(false)
+    dispatch({type:SETAUTH})
+    dispatch({type:SIGNIN})
+  }else{
+setfailedauth(true)
+  }
 if(res.message.role=="restaurant"){
   navigate("/restaurant/dashboard")
 }
 
 
-dispatch({type:SIGNIN})
+
 })
 
 
@@ -238,7 +249,7 @@ dispatch({type:SIGNIN})
 
 
 
- let dispatch = useDispatch()
+
 let {signin}=useSelector((state)=>state)
 
   return (
@@ -293,6 +304,7 @@ let {signin}=useSelector((state)=>state)
           <p>Or login via</p>
           <span></span>
         </div>
+        {failedauth&&<h5 style={{textAlign:"center",color:"red"}}>Login failed !! Check your email and password</h5> }
         <div className="oath_links">
           <div className="gmail">
             <svg

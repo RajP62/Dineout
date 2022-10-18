@@ -9,6 +9,7 @@ import { SigninContext } from "../Context/SignInContext";
 import { Signup } from "./signup";
 import { useDispatch, useSelector } from "react-redux";
 import { BOOK, GUEST, STATUS } from "../Store/actiontype/auth.action.type";
+import { useNavigate } from "react-router";
 const Wrapper = styled.div`
   object-fit: contain;
   display: flex;
@@ -63,6 +64,9 @@ const Wrapper = styled.div`
 `;
 
 const TimeSlots = ({ timeStatus, setTimeStatus }) => {
+  const navigate = useNavigate();
+  const {price, name} = useSelector(state=>state.restaurantDetails);
+  console.log("price in timeslot", price);
 
   const loadScript = (src)=>{
     return new Promise((resolve)=>{
@@ -83,6 +87,8 @@ let state= useSelector((state)=>state)
 
 console.log(state,"details")
 let {BookTime,Status,Guest,Date}=state.bookingDetails
+
+
 
 
   useEffect(()=>{
@@ -313,7 +319,7 @@ let handleGuest = (num)=>{
 {/* handleSignupModel() should be called in button click */}
       {Guest > 0 ? (
                 
-      <div className="continue__parent"><button onClick={displayRazorpay} className="btn">Continue</button></div>
+      <div className="continue__parent"><button onClick={()=>{let res = displayRazorpay(price, name)}} className="btn">Continue</button></div>
                 ) : null}
      
     </>

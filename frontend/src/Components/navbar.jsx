@@ -7,6 +7,7 @@ import  MultipleSelectPlaceholder from "./multipleSelector"
 import { Signin } from "./signin";
 import { useDispatch, useSelector } from "react-redux";
 import { SIGNUP } from "../Store/actiontype/auth.action.type";
+import { SIGNIN } from "../Store/actiontype/auth.action.type";
 import { Signup } from "./signup";
 function Navbar(){
 
@@ -17,6 +18,10 @@ let dispatch = useDispatch()
 
 let {signup} = useSelector((state)=>state)
 console.log(signup,"signup")
+
+let handleLogin = ()=>{
+  dispatch({type: SIGNIN});
+}
 
   let handlesignup = ()=>{
 dispatch({type:SIGNUP})
@@ -45,10 +50,14 @@ Search
 </Button>
 </div>
 <div>
-
+<div style={{display:"flex"}}>
+<Button onClick={handleLogin}  sx={{backgroundColor:" rgb(252, 97, 97)",width:"100px",textTransform:"lowercase",fontWeight:"700"}} variant="contained" size="small" color="error">
+Login
+</Button>
 <Button  onClick={handlesignup} sx={{backgroundColor:" rgb(252, 97, 97)",width:"100px",textTransform:"lowercase",fontWeight:"700"}} variant="contained" size="small" color="error">
 Signup
 </Button>
+</div>
 </div>
     </div>
       <div className="links" >

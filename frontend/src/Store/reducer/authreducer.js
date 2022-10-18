@@ -1,11 +1,12 @@
-import { BOOK, SET_FILTER, SIGNIN, SIGNUP, SORT, STATUS ,GUEST,DATE, RESTAURANTDETAILS} from "../actiontype/auth.action.type"
+import { BOOK, SET_FILTER, SIGNIN, SIGNUP, SORT, STATUS ,GUEST,DATE, RESTAURANTDETAILS, SETAUTH} from "../actiontype/auth.action.type"
 
 let initialstate = {
     signup:false,
-    signin:true,
+    signin:false,
     token:null,
     filters:{},
     sort:"",
+    auth:false,
     bookingDetails:{
         BookTime:"",
         Guest:0,
@@ -15,7 +16,8 @@ let initialstate = {
     },
     restaurantDetails:{
    name:"",
-   address:""
+   address:"",
+   price:"",
     }
 }
 export const authreducer = (state=initialstate,{type,payload})=>{
@@ -28,6 +30,11 @@ return {...state,signin:!state.signin,signup:false}
 return {...state,signup:!state.signup,signin:false}
     }
        
+case SETAUTH:{
+
+    return {...state,auth:true}
+}
+
     case SET_FILTER:{
         return {...state,filters:payload}
     }
@@ -50,7 +57,7 @@ case DATE :{
 }
 
 case RESTAURANTDETAILS :{
-    return {...state,restaurantDetails:{...state.restaurantDetails,name:payload.name,adress:payload.adress}}
+    return {...state,restaurantDetails:{...state.restaurantDetails,name:payload.name,adress:payload.adress, price: payload.price}}
 }
     default:{
 return state

@@ -10,6 +10,7 @@ export let SET_FILTER = "filter/set"
 
 export let SORT="sort"
 
+export let SETAUTH="set/auth"
 
 export let BOOK="handle/book"
 

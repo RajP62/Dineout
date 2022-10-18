@@ -4,7 +4,7 @@ const shortid = require("shortid");
 const razorpay = require("../configs/razorpay");
 router.post("", async (req, res)=>{
     const payment_capture = 1;
-    const amount = 499;
+    const amount = req.body?.price;
     const currency = 'INR';
 
     const options = {
@@ -16,6 +16,7 @@ router.post("", async (req, res)=>{
 
     try{
         const response = await razorpay.orders.create(options);
+        console.log(response);
         const {id, currency, amount} = response;
         return res.json({
             id,
@@ -24,8 +25,16 @@ router.post("", async (req, res)=>{
         });
     }
     catch(error){
-        return res.send({error:true, message: "Something went wrong"});
+        return res.send({error:true, message: error});
     }
 });
+
+router.post("/result", async(req,res)=>{
+    try {
+        return res.redirect("http://localhost:3000/success");
+    } catch (e) {
+        res.status(500).json({message: "Internal server error"});
+    }
+})
 
 module.exports = router;

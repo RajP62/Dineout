@@ -17,6 +17,7 @@ const Style = styled.div`
   box-shadow: 0px 0px 4px gray;
   margin: auto;
   padding: 30px;
+  z-index:5;
   padding-top: 5px;
  
   h1 {
@@ -156,6 +157,7 @@ const customStyles = {
     right: "auto",
     bottom: "auto",
     padding: "0px",
+    zIndex:5,
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
   },
@@ -212,7 +214,7 @@ e.preventDefault()
       fetch("http://localhost:4000/users/add",{
           method:"POST",
           body:(payload),
-        
+          credentials: "include",
           headers:{
               "Content-Type":"application/json"
           }
