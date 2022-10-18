@@ -4,7 +4,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 const crypto = require("node:crypto");  
-    
+const authenticate = require("../middlewares/authenticate");
 router.post("/add", async(req,res)=>{
     try{
         const {firstName, lastName, email, password, role="user"} = req.body;
@@ -78,7 +78,7 @@ router.get("/refresh", async(req, res)=>{
     }
 });
 
-router.get("", async(req,res)=>{
+router.get("", authenticate,  async(req,res)=>{
     try{
         const access = req.cookies?.access;
         if(!access){
