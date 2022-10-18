@@ -4,7 +4,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-
+import {v4} from "uuid";
 const ITEM_HEIGHT = 30;
 const ITEM_PADDING_TOP = 3;
 const MenuProps = {
@@ -72,7 +72,7 @@ export default function MultipleSelectPlaceholder() {
           </MenuItem>
           {names.map((name) => (
             <MenuItem
-              key={name}
+              key={v4()}
               value={name}
               style={getStyles(name, personName, theme)}
             >

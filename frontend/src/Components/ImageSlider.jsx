@@ -1,6 +1,7 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel'
 import { Paper, Button } from '@mui/material'
+import { v4 } from 'uuid';
 
 
 function ImageSlider({data=[]}) {
@@ -18,7 +19,7 @@ indicators={false}
 
         >
             {
-                data.map((item, i) => <Item key={i} item={item} />)
+                data.map((item, i) => <Item key={v4()} item={item} />)
             }
         </Carousel>
     )

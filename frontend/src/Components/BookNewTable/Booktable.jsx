@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Booktable.css";
 import Grid from '@mui/material/Grid'
 import { Dots } from 'loading-animations-react';
-
+import {v4 as uuidv4} from "uuid";
 
 
 import Container from '@mui/material/Container'
@@ -112,7 +112,7 @@ let arr = new Array(Math.ceil(totalpages/6)).fill(1)
                 return (
                   <>
                
-                  <Link to={`/detail`}>
+                  <Link key={uuidv4()} to={`/detail`}>
                     <Card className="main-card" sx={{ maxWidth: 280 }} key={mainData.id} onClick={()=>handleClick(mainData._id)}>
                       <CardMedia
                         component="img"
@@ -152,7 +152,7 @@ let arr = new Array(Math.ceil(totalpages/6)).fill(1)
       <div style={{display:"flex",flexDirection:"row",justifyContent:"space-around"}}>
         
       <ButtonGroup variant="contained" aria-label="outlined primary button group">
-      {arr.map((e,i)=><Button style={{margin:"10px"}} onClick={()=>setpage(i+1)}>{i+1}</Button>)}
+      {arr.map((e,i)=><Button key={uuidv4()} style={{margin:"10px"}} onClick={()=>setpage(i+1)}>{i+1}</Button>)}
 </ButtonGroup>
 
 

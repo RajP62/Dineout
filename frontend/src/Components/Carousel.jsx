@@ -2,7 +2,7 @@
 import Slider from "react-slick";
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Input, requirePropFactory, Typography } from '@mui/material';
 import { Link } from "react-router-dom";
-
+import {v4 as uuidv4} from "uuid";
 import LeftArrow from "../images/Homepage/LeftArrow.svg"
 import RightArrow from "../images/Homepage/RightArrow.svg"
  
@@ -35,7 +35,7 @@ export const Carousel = ({data=[],handleClick})=>{
           
           <Slider {...settings}>
          {data.map((mainData,ind)=>{
-          return ( <Link to={`/detail`}>
+          return ( <Link key={uuidv4()} to={`/detail`}>
           <Card className="main-card" sx={{ maxWidth: 280 ,maxHeight: 460}} key={mainData.id} onClick={()=>handleClick(mainData._id)}>
             <CardMedia
               component="img"

@@ -1,6 +1,6 @@
 import React from "react";
 import "./footer.css";
-
+import {v4 as uuidv4} from "uuid";
 
 const Footer = () => {
   return (
@@ -10,7 +10,7 @@ const Footer = () => {
         <table>
           <tr>
             {["Available in"].map((item) => (
-              <th>
+              <th key={uuidv4()}>
                 {item}
                 <h4></h4>
               </th>
@@ -20,28 +20,28 @@ const Footer = () => {
           <tr>
             {["Delhi", "Mumbai", "Bangalore", "Chennai", "Hyderabad"].map(
               (item) => (
-                <td>{item}</td>
+                <td key={uuidv4()}>{item}</td>
               )
             )}
           </tr>
           <tr>
             {["Pune", "Kolkata", "Ahmedabad", "Chandigarh", "Goa"].map(
               (item) => (
-                <td>{item}</td>
+                <td key={uuidv4()}>{item}</td>
               )
             )}
           </tr>
           <tr>
             {["Jaipur", "Lucknow", "Indore", "Udaipur", "Agra"].map(
               (item) => (
-                <td>{item}</td>
+                <td key={uuidv4()}>{item}</td>
               )
             )}
           </tr>
           <tr>
             {["Vadodara", "Nagpur", "Kochi", "Surat", "Ludiana"].map(
               (item) => (
-                <td>{item}</td>
+                <td key={uuidv4()}>{item}</td>
               )
             )}
           </tr>
@@ -60,7 +60,7 @@ const Footer = () => {
               "Top Facilities",
               "Top Locations"
             ].map((item) => (
-              <th>
+              <th key={uuidv4()}>
                 {item}
                 <h4></h4>
               </th>
@@ -75,7 +75,7 @@ const Footer = () => {
               "Romantic",
               "Koramangala"
             ].map((item) => (
-              <td>{item}</td>
+              <td key={uuidv4()}>{item}</td>
             ))}
           </tr>
           <tr>
@@ -86,7 +86,7 @@ const Footer = () => {
               "Fine Dining",
               "Indiranagar"
             ].map((item) => (
-              <td>{item}</td>
+              <td key={uuidv4()}>{item}</td>
             ))}
           </tr>
           <tr>
@@ -97,7 +97,7 @@ const Footer = () => {
               "Fine Dining",
               "Jayanagar"
             ].map((item) => (
-              <td>{item}</td>
+              <td key={uuidv4()}>{item}</td>
             ))}
           </tr>
           <tr>
@@ -108,7 +108,7 @@ const Footer = () => {
               "5 star",
               "White Field"
             ].map((item) => (
-              <td>{item}</td>
+              <td key={uuidv4()}>{item}</td>
             ))}
           </tr>
           <tr>
@@ -119,12 +119,12 @@ const Footer = () => {
               "Pure Veg",
               "Marathahalli"
             ].map((item) => (
-              <td>{item}</td>
+              <td key={uuidv4()}>{item}</td>
             ))}
           </tr>
           <tr>
             {[" ", " ", "Thai", "Sea Food", "HSR Layout"].map((item) => (
-              <td>{item}</td>
+              <td key={uuidv4()}>{item}</td>
             ))}
           </tr>
         </table>
@@ -166,7 +166,7 @@ const Footer = () => {
               "https://www.svgrepo.com/show/126780/twitter.svg"
             ].map((item) => (
 
-              <img
+              <img key={uuidv4()}
                 style={{ height: "30px", width: "30px", marginRight: "10px" }}
                 src={item}
                 alt="imm"
