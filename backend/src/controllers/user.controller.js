@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
-const crypto = require("node:crypto");  
+const crypto = require("crypto")
 const authenticate = require("../middlewares/authenticate");
 router.post("/add", async(req,res)=>{
     try{
