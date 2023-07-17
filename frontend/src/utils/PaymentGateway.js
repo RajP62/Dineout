@@ -3,7 +3,7 @@ import { alignProperty } from "@mui/material/styles/cssUtils";
 
 export default async function DisplayRazorpay(price, name){
     price = +price;
-    const data = await fetch("https://dineoutappclone.herokuapp.com/razorpay",{
+    const data = await fetch(`${process.env.REACT_APP_API_URL}/razorpay`,{
         method: "POST",
         body: JSON.stringify({price}),
         headers:{
@@ -12,7 +12,7 @@ export default async function DisplayRazorpay(price, name){
     }).then(res=>res.json());
    const {currency, amount, id} = data;
     const options = {
-        key: process.env.RZP_KEY,
+        key: process.env.REACT_APP_RZP_KEY,
         currency,
         amount,
         description: "Book your dineout",

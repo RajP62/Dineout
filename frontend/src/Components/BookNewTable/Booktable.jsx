@@ -37,7 +37,7 @@ let [loading,setloading]=useState(false)
   let [totalpages,settotalpages]=useState(1)
   const getResturents = async () => {
     setloading(true)
-    const response = await fetch(`https://dineoutappclone.herokuapp.com/restaurants?cuisines=${cuisines.join("&")}&tags=${tags.join("&")}&features=${features.join("&")}&dishes=${dishes.join("&")}&facilities=${facilities.join("&")}&sort=${sort}&page=${page}&limit=6`, { mode: "cors" });
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/restaurants?cuisines=${cuisines.join("&")}&tags=${tags.join("&")}&features=${features.join("&")}&dishes=${dishes.join("&")}&facilities=${facilities.join("&")}&sort=${sort}&page=${page}&limit=6`, { mode: "cors" });
     const data = await response.json()
     setloading(false)
     console.log(data)

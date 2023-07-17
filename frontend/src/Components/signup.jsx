@@ -211,7 +211,7 @@ e.preventDefault()
       payload= JSON.stringify(payload)
       console.log(payload,payload)
 
-      fetch("https://dineoutappclone.herokuapp.com/users/add",{
+      fetch(`${process.env.REACT_APP_API_URL}/users/add`,{
           method:"POST",
           body:(payload),
           credentials: "include",

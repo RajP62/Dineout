@@ -62,7 +62,7 @@ useEffect(()=>{
     },[filter])
 
      const cuisines = async () => {
-    const response = await fetch('https://backend-dineout.herokuapp.com/restaurants', { mode: "cors" });
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/restaurants`, { mode: "cors" });
     const data = await response.json()
     // let filtered = data.filter(el=>el.about.quickFilters.includes("Pure Veg")? true  onChange={handlechange}: false);
     // setFilter(filtered);
