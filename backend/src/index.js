@@ -6,9 +6,12 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cookieParser());
 app.use(fileParser());
-app.use(cors({
-  origin: 'https://dineout-clone-two.vercel.app/'
-}));
+app.use(function(req, res, next){
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Content-Type", "application/json;charset=UTF-8")
+});
 // var corsOptions = {
 //     origin: 'https://singular-wisp-16a48c.netlify.app/',
 //     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
